@@ -1,0 +1,14 @@
+{{header}}
+
+<div class="map-iframe-container">
+  <iframe id="mapIframe" class="map-iframe" src="/mm-map.html"></iframe>
+</div>
+
+<script>
+  // Dynamic iframe height adjustment if needed
+  const iframe = document.getElementById("mapIframe");
+  // Force source refresh on reload to avoid cache issues
+  iframe.src = "/mm-map.html?nocache=" + new Date().getTime();
+</script>
+
+{{footer}}

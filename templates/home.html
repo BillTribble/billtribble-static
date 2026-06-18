@@ -1,0 +1,142 @@
+{{header}}
+
+<div class="homepage-container">
+  <div class="homepage-columns">
+    <!-- Left Column: Profile & Links -->
+    <div class="profile-column">
+      <h1 class="hero-title">Bill Tribble</h1>
+      <div class="profile-info">
+        <p class="profile-subtitle">Musician, DJ, and facilitator for conscious dance. Resident at Ecstatic Dance UK, London.</p>
+      </div>
+      <div class="avatar-container">
+        <img src="/assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
+      </div>
+      <div class="divider"></div>
+      <div class="links-section">
+        <h2 class="section-title">Links</h2>
+        <div class="links-buttons">
+          <a href="https://billtribble.bandcamp.com/" target="_blank" class="link-btn">
+            <img src="/assets/images/icons/musical-note-48.png" alt="" class="btn-icon">
+            <span>Bandcamp</span>
+          </a>
+          <a href="/samsara-looper/" class="link-btn highlight-btn">
+            <img src="/assets/images/samsara-logo-white.png" alt="" class="btn-icon logo-icon">
+            <span>Samsara Looper</span>
+          </a>
+          <a href="https://www.instagram.com/bill_tribble/" target="_blank" class="link-btn">
+            <img src="/assets/images/icons/Instagram-White-Icons.png" alt="" class="btn-icon">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@bill_tribble" target="_blank" class="link-btn">
+            <img src="/assets/images/icons/tiktok-simplified-white-icon.webp" alt="" class="btn-icon">
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Featured Video loop -->
+    <div class="video-column">
+      <div class="video-wrapper border-radius-16">
+        <video id="drumVideo" autoplay loop muted playsinline src="/assets/video/me-drum-edit-2.mov"></video>
+        <div class="video-overlay">
+          <button id="unmuteButton" class="unmute-toggle">Unmute video 🔈</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Width Bottom Content -->
+  <div class="main-content-flow">
+    <!-- SoundCloud Section -->
+    <section class="soundcloud-section">
+      <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bill_tribble&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+    </section>
+
+    <!-- Highlights from Releases -->
+    <section class="highlights-section">
+      <div class="highlight-item">
+        <h2 class="entry-title"><a href="/posts/lucid-crystal-temple.html">Lucid Crystal Temple</a></h2>
+        <div class="video-embed-container">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/Zl1htsK8QAg" title="Lucid Crystal Temple" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="highlight-desc">Inspired by a spiritual experience in early 2020, these tracks are ambient reflections of a temporarily lucid state of mind. The entire EP was recorded using just one virtual modelling instrument over one week, using a microtuning designed to produce very clear, transparent sounds.</p>
+        <p class="read-more-link"><a href="/posts/lucid-crystal-temple.html">Read the full story &rarr;</a></p>
+      </div>
+
+      <div class="highlight-item">
+        <h2 class="entry-title"><a href="/posts/spirit-guides.html">Spirit Guides</a></h2>
+        <div class="video-embed-container">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/drNqTdSUQUw" title="Spirit Guides" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p class="highlight-desc">A cinematic, ambient electronic album featuring my vocals and field recordings from travels round Japan and Europe – created in a hypnotic, meditative state in late nights over two decades.</p>
+        <p class="read-more-link"><a href="/posts/spirit-guides.html">Read the full story &rarr;</a></p>
+      </div>
+    </section>
+
+    <!-- Previous Adventures List -->
+    <section class="adventures-section">
+      <h2 class="section-title">Previous adventures</h2>
+      <ul class="adventures-list">
+        <li>Ecstatic Dance UK, London</li>
+        <li>One Heart Festival, Devon</li>
+        <li>Buddhafield Festival, Somerset</li>
+        <li>Ecstatic Dance Bristol</li>
+        <li>Ecstatic Dance Tokyo, Japan</li>
+        <li>Womb, Tokyo, Japan</li>
+        <li>AgeHa, Tokyo, Japan</li>
+        <li>Ministry of Sound, London</li>
+      </ul>
+    </section>
+
+    <!-- Instagram Feed Grid -->
+    <section class="instagram-section">
+      <h2 class="section-title">Instagram feed</h2>
+      <div id="instagramGrid" class="instagram-grid">
+        <!-- Dynmically loaded client side -->
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Video Unmute Script
+  document.getElementById('unmuteButton').addEventListener('click', function() {
+    const video = document.getElementById('drumVideo');
+    if (video.muted) {
+      video.muted = false;
+      this.textContent = 'Mute video 🔇';
+    } else {
+      video.muted = true;
+      this.textContent = 'Unmute video 🔈';
+    }
+  });
+
+  // Fetch Instagram grid from cached json
+  fetch('/assets/instagram.json')
+    .then(response => response.json())
+    .then(posts => {
+      const grid = document.getElementById('instagramGrid');
+      if (!posts || posts.length === 0) {
+        grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
+        return;
+      }
+      grid.innerHTML = posts.map(post => `
+        <div class="instagram-card">
+          <a href="${post.permalink}" target="_blank" rel="noopener">
+            <img src="/${post.local_image_url}" alt="${post.caption ? post.caption.slice(0, 100).replace(/"/g, '&quot;') : 'Instagram Post'}" class="instagram-img">
+            <div class="instagram-card-overlay">
+              <span class="instagram-heart">&hearts;</span>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      console.error('Failed to load Instagram posts:', err);
+      const grid = document.getElementById('instagramGrid');
+      grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
+    });
+</script>
+
+{{footer}}

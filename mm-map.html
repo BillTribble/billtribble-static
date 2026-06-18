@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Million Movers - Global Dance Facilitator Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
+    
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-dance-event: #ff6b35;
+            --color-dj: #7b68ee;
+            --color-facilitator: #3498db;
+            --color-sound-healer: #27ae60;
+            --color-event-organiser: #e74c3c;
+            --color-teacher: #1abc9c;
+            --border-radius: 8px;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .controls-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            max-width: 600px; /* Increased max-width */
+            padding: 15px;
+        }
+        
+        .top-controls-row { /* Container for search, nearby, and add filter */
+            display: flex;
+            align-items: center; /* Changed from 'left' to 'center' for better vertical alignment */
+            gap: 8px;
+            margin-bottom: 10px; /* Reverted to original margin-bottom */
+            flex-wrap: nowrap; /* Prevent wrapping on desktop */
+        }
+
+        .search-input-group {
+            position: relative;
+            flex-basis: 60%; /* Adjusted to roughly 70% of previous flex:1 behavior */
+            max-width: 60%; /* Limit growth on desktop */
+            display: flex;
+            align-items: center; /* Changed from 'left' to 'center' for better vertical alignment */
+            min-width: 250px; /* Ensure it's wide enough for the placeholder */
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 10px;
+            padding-right: 80px; /* Space for both clear and search buttons */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .search-button, .clear-search-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .search-button {
+            right: 5px;
+            background: #3498db;
+            color: white;
+        }
+        
+        .search-button:hover {
+            background: #2980b9;
+        }
+
+        .clear-search-button {
+            right: 40px; /* Positioned to the left of the search button */
+            background: none;
+            color: #666;
+            font-size: 20px;
+            padding: 0px 8px; /* Adjusted padding for 'x' icon */
+        }
+
+        .clear-search-button:hover {
+            color: #333;
+        }
+        
+        .location-button, .add-filter-button {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            flex-shrink: 0; /* Prevent buttons from shrinking */
+            width: auto; /* Allow width to adjust to content */
+            transition: background 0.2s, border-color 0.2s; /* Add transition for active state */
+        }
+        
+        .location-button:hover, .add-filter-button:hover {
+            background: #e0e0e0;
+        }
+
+        /* Active state for the add-filter button when the dropdown is open */
+        .add-filter-button.active {
+            background: #3498db; /* Blue background */
+            color: white; /* White text */
+            border-color: #3498db; /* Blue border */
+        }
+
+        .add-filter-button.active .material-icons,
+        .add-filter-button.active .button-text {
+            color: white; /* Ensure icon and text are white */
+        }
+        
+        .button-text {
+            margin-left: 4px;
+        }
+
+        /* Adjust Material Icon size within the add-filter-button */
+        .add-filter-button .material-icons {
+            font-size: 14px; /* Match the font size of the button text */
+        }
+
+        /* Filter chips panel */
+        .filter-panel {
+            margin-top: 0px; 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: white;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .filter-chip .close-chip {
+            margin-left: 5px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .clear-all-button {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #e0e0e0; /* Light grey background */
+            color: #333; /* Dark text */
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .clear-all-button:hover {
+            background: #d0d0d0;
+        }
+
+        .clear-all-button .close-icon {
+            margin-left: 5px;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0;
+        }
+
+
+        .filter-dropdown {
+            position: absolute;
+            top: 100%; /* Positions it relative to .controls-container */
+            left: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 10px;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+
+        .filter-dropdown.show {
+            display: block;
+        }
+
+        .filter-dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.1s;
+        }
+
+        .filter-dropdown-item:hover {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .filter-dropdown-item input[type="checkbox"] {
+            margin-right: 8px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .filter-dropdown-divider {
+            border-top: 1px solid #eee;
+            margin: 10px 0;
+        }
+
+        .filter-dropdown-done {
+            width: 100%;
+            padding: 8px 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+            margin: 2px;
+        }
+        
+        .badge-dance-event { background: var(--color-dance-event); }
+        .badge-dj { background: var(--color-dj); }
+        .badge-facilitator { background: var(--color-facilitator); }
+        .badge-sound-healer { background: var(--color-sound-healer); }
+        .badge-event-organiser { background: var(--color-event-organiser); }
+        .badge-teacher { background: var(--color-teacher); }
+        
+        .popup-content {
+            max-width: 250px;
+        }
+        
+        .popup-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .popup-location {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .popup-badges {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        
+        .popup-links {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .popup-links a {
+            color: #3498db;
+            text-decoration: none;
+            word-break: break-word;
+        }
+        
+        .popup-links a:hover {
+            text-decoration: underline;
+        }
+
+        .popup-button {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            margin-top: 10px;
+            background: #28a745; /* Green color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .popup-button:hover {
+            background: #218838; /* Darker green on hover */
+        }
+
+        /* Explicitly ensure white text and no underline for all link states */
+        .popup-button, .popup-button:visited, .popup-button:hover, .popup-button:active {
+            color: white !important; 
+            text-decoration: none !important;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+        }
+
+        .join-button-floating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: var(--shadow);
+            transition: background 0.2s;
+        }
+
+        .join-button-floating:hover {
+            background: #218838;
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .controls-container {
+                max-width: calc(100% - 20px); /* Full width minus margin */
+            }
+            
+            .search-input-group {
+                flex: 1 1 auto; /* Allow search to grow and shrink flexibly */
+                min-width: 0; /* Allow the search bar to shrink as needed on small screens */
+                max-width: none; /* Remove desktop max-width constraint */
+                flex-basis: auto; /* Allow flex-basis to be determined by content and available space */
+            }
+
+            .location-button,
+            .add-filter-button {
+                flex-shrink: 0; /* Prevent buttons from shrinking */
+            }
+
+            .button-text {
+                display: none; /* Hide button text on mobile */
+            }
+
+            .join-button-floating {
+                top: auto;
+                right: 10px;
+                bottom: 10px;
+                left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <!-- Join Button -->
+    <button class="join-button-floating" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScSu80RyCidWHDr9D9CiFjrRIBu9y4ORBCTe5QzVXHFV7UrlA/viewform', '_blank')">
+        Join
+    </button>
+
+    <div class="controls-container">
+        <div class="top-controls-row">
+            <div class="search-input-group">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search location or name...">
+                <button class="clear-search-button" id="clearSearchButton" style="display: none;">×</button>
+                <button class="search-button" onclick="searchLocation()">🔍</button>
+            </div>
+            <button class="location-button" onclick="searchNearMe()">
+                📍<span class="button-text">Nearby</span>
+            </button>
+            <button class="add-filter-button" id="addFilterButton">
+                <span class="material-icons">tune</span><span class="button-text">Add Filter</span>
+            </button>
+        </div>
+        
+        <!-- Filter chips panel -->
+        <div class="filter-panel" id="filterPanel">
+            <!-- Filter chips and clear all button will be dynamically added here -->
+        </div>
+
+        <div class="filter-dropdown" id="filterDropdown">
+            <div class="filter-dropdown-item" data-filter-type="danceEvent">
+                <input type="checkbox" id="filterDanceEvent">
+                <label for="filterDanceEvent">🪩 Dance Event</label>
+            </div>
+            <div class="filter-dropdown-divider"></div>
+            <div class="filter-dropdown-item" data-filter-type="dj">
+                <input type="checkbox" id="filterDJ">
+                <label for="filterDJ">🎧 DJ</label>
+            </div>
+            <div class="filter-dropdown-item" data-filter-type="facilitator">
+                <input type="checkbox" id="filterFacilitator">
+                <label for="filterFacultator">🎤 Facilitator</label>
+            </div>
+            <div class="filter-dropdown-item" data-filter-type="soundHealer">
+                <input type="checkbox" id="filterSoundHealer">
+                <label for="filterSoundHealer">🎻 Sound Healer</label>
+            </div>
+            <div class="filter-dropdown-item" data-filter-type="eventOrganiser">
+                <input type="checkbox" id="filterEventOrganiser">
+                <label for="filterEventOrganiser">🎪 Event Organiser</label>
+            </div>
+            <div class="filter-dropdown-item" data-filter-type="teacher">
+                <input type="checkbox" id="filterTeacher">
+                <label for="filterTeacher">🧑🏽‍🎓 Teacher</label>
+            </div>
+            <button class="filter-dropdown-done" id="filterDoneButton">Done</button>
+        </div>
+    </div>
+    
+    <div class="loading-overlay" id="loadingOverlay">
+        Loading ...
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <script defer>
+        // Global variables
+        let map;
+        let markers;
+        let facilitatorsData = [];
+        let currentSearchCircle = null;
+        const searchRadius = 25000; // 25km in meters
+        
+        // Current active filters state
+        let activeFilters = {}; // Will be initialized from filterMeta
+
+        // Mapping filter types to display names, colors, and exact HTML ID suffixes
+        const filterMeta = {
+            danceEvent: { name: 'Dance Event', emoji: '🪩', colorVar: 'var(--color-dance-event)', idSuffix: 'DanceEvent' },
+            dj: { name: 'DJ', emoji: '🎧', colorVar: 'var(--color-dj)', idSuffix: 'DJ' },
+            facilitator: { name: 'Facilitator', emoji: '🎤', colorVar: 'var(--color-facilitator)', idSuffix: 'Facilitator' },
+            soundHealer: { name: 'Sound Healer', emoji: '🎻', colorVar: 'var(--color-sound-healer)', idSuffix: 'SoundHealer' },
+            eventOrganiser: { name: 'Event Organiser', emoji: '🎪', colorVar: 'var(--color-event-organiser)', idSuffix: 'EventOrganiser' },
+            teacher: { name: 'Teacher', emoji: '🧑🏽‍🎓', colorVar: 'var(--color-teacher)', idSuffix: 'Teacher' }
+        };
+
+        // Global variable to store markers by name for easy lookup
+        let facilitatorMarkers = {};
+
+        // Function to update the search input placeholder based on screen width
+        function updateSearchInputPlaceholder() {
+            const searchInput = document.getElementById('searchInput');
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                searchInput.placeholder = "Search";
+            } else {
+                searchInput.placeholder = "Search location or name...";
+            }
+        }
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([20, 0], 2);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            markers = L.markerClusterGroup({
+                maxClusterRadius: 50,
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true
+            });
+            
+            map.addLayer(markers);
+            
+            // Load saved state
+            loadState();
+            
+            // Load data
+            loadData();
+            
+            // Set up filter listeners
+            setupFilterListeners();
+            // Initial render of filter chips
+            renderFilterChips();
+
+            // Add event listener for 'Enter' key on search input
+            const searchInput = document.getElementById('searchInput');
+            const clearSearchButton = document.getElementById('clearSearchButton');
+
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    searchLocation();
+                }
+                toggleClearButtonVisibility(); // Toggle clear button visibility on input
+            });
+
+            // Set up clear button event listener
+            clearSearchButton.addEventListener('click', clearSearchInput);
+
+            // Initial call to set clear button visibility
+            toggleClearButtonVisibility();
+
+            // Initial call to set placeholder and add resize listener
+            updateSearchInputPlaceholder();
+            window.addEventListener('resize', updateSearchInputPlaceholder);
+        }
+        
+        // Load CSV data
+        function loadData() {
+            // Try the original published URL first
+            const publishedUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSO18-URHao7rK0HBSV5DHSCR1sqj5EhCKSnMqIc6XyxmtxMuMteNnCodWBHuWBxvGOdKsFtV1KxE5a/pub?output=csv';
+            
+            console.log('Loading data from published Google Sheets URL...');
+            console.log('URL:', publishedUrl);
+            
+            // Try direct fetch first since Papa Parse seems to have issues
+            fetch(publishedUrl, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'omit'
+            })
+                .then(response => {
+                    console.log('Fetch response received');
+                    console.log('Response status:', response.status);
+                    console.log('Response type:', response.type);
+                    console.log('Response URL:', response.url);
+                    
+                    // Check if we got redirected
+                    if (response.url !== publishedUrl) {
+                        console.log('Was redirected to:', response.url);
+                    }
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    console.log('CSV text received, length:', csvText.length);
+                    console.log('First 200 chars:', csvText.substring(0, 200));
+                    
+                    const results = Papa.parse(csvText, {
+                        header: false,
+                        skipEmptyLines: true
+                    });
+                    
+                    console.log('Parse complete, rows:', results.data.length);
+                    processData(results.data);
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Direct fetch failed:', error);
+                    console.log('Trying with CORS proxy...');
+                    loadWithCorsProxy();
+                });
+        }
+        
+        function loadWithCorsProxy() {
+            const publishedUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSO18-URHao7rK0HBSV5DHSCR1sqj5EhCKSnMqIc6XyxmtxMuMteNnCodWBHuWBxvGOdKsFtV1KxE5a/pub?output=csv';
+            const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(publishedUrl);
+            
+            console.log('Trying CORS proxy:', proxyUrl);
+            
+            fetch(proxyUrl)
+                .then(response => {
+                    console.log('Proxy response:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    console.log('CSV via proxy loaded, length:', csvText.length);
+                    
+                    const results = Papa.parse(csvText, {
+                        header: false,
+                        skipEmptyLines: true
+                    });
+                    
+                    processData(results.data);
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('CORS proxy also failed:', error);
+                    showFinalError();
+                });
+        }
+        
+        function showFinalError() {
+            document.getElementById('loadingOverlay').innerHTML = 
+                '<div style="text-align: center; padding: 20px; max-width: 600px; margin: 0 auto;">' +
+                '<h3 style="color: #e74c3c;">Unable to Load Data</h3>' +
+                '<p style="margin: 20px 0;">All loading methods failed. This appears to be a network restriction.</p>' +
+                '<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: left;">' +
+                '<p style="font-weight: bold; margin-bottom: 10px;">Solutions:</p>' +
+                '<ol style="margin-left: 20px; line-height: 1.8;">' +
+                '<li><strong>Download and host locally:</strong><br>' +
+                'Download <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSO18-URHao7rK0HBSV5DHSCR1sqj5EhCKSnMqIc6XyxmtxMuMteNnCodWBHuWBxvGOdKsFtV1KxE5a/pub?output=csv" target="_blank">the CSV file</a> ' +
+                'and save it as "data.csv" in the same folder as this HTML file.</li>' +
+                '<li><strong>Use a local web server:</b><br>' +
+                'Run <code>python -m http.server 8000</code> in the folder and access via http://localhost:8000</li>' +
+                '<li><strong>Check browser/network:</strong><br>' +
+                'Disable ad blockers, VPN, or try a different browser/network</li>' +
+                '</ol>' +
+                '</div>' +
+                '<p style="margin-top: 20px;">' +
+                '<button onclick="tryLocalFile()" style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">Try Local File</button>' +
+                '<button onclick="location.reload()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>' +
+                '</p>' +
+                '</div>';
+        }
+        
+        // Try loading from a local file
+        function tryLocalFile() {
+            console.log('Attempting to load local data.csv file...');
+            
+            fetch('data.csv')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Local file not found');
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    console.log('Local CSV loaded successfully');
+                    const results = Papa.parse(csvText, {
+                        header: false,
+                        skipEmptyLines: true
+                    });
+                    
+                    processData(results.data);
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                })
+                .catch(error => {
+                    // Using a custom modal-like message instead of alert()
+                    const overlay = document.getElementById('loadingOverlay');
+                    overlay.style.display = 'flex';
+                    overlay.innerHTML = `
+                        <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 400px;">
+                            <h4 style="color: #e74c3c; margin-bottom: 10px;">File Not Found</h4>
+                            <p>No local "data.csv" file found. Please download the CSV and save it as "data.csv" in the same folder as this HTML file.</p>
+                            <button onclick="document.getElementById('loadingOverlay').style.display='none';" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
+                        </div>
+                    `;
+                });
+        }
+
+        // Helper function to strip emojis and normalize strings for comparison
+        function normalizeString(str) {
+            if (typeof str !== 'string') return '';
+            // Remove emojis (simple regex, might not catch all unicode emojis)
+            // Remove non-alphanumeric characters except spaces, then trim and lowercase
+            return str.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+                      .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+                      .trim()
+                      .toLowerCase();
+        }
+        
+        // Process CSV data
+        function processData(data) {
+            // Added robust data validation at the start
+            if (!data || data.length === 0 || !Array.isArray(data[0])) {
+                console.error('Invalid data format: Expected data to be a non-empty array with a header row.');
+                document.getElementById('loadingOverlay').innerHTML = `
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 400px;">
+                        <h4 style="color: #e74c3c; margin-bottom: 10px;">Data Processing Error</h4>
+                        <p>The loaded data is empty or malformed. Please check the CSV source or try reloading.</p>
+                        <button onclick="location.reload()" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+                    </div>
+                `;
+                return; // Stop processing
+            }
+
+            console.log('Processing data, total rows:', data.length);
+
+            // 1. Read and trim header row
+            const headers = data[0].map(h => h.trim());
+            console.log('CSV headers (trimmed):', headers);
+            
+            // 2. Helper to find index by exact, case-insensitive header name, then fallback to includes
+            // Added 'strict' parameter to force exact match for critical fields
+            const idx = (targetHeaderName, strict = false) => {
+                const normalizedTarget = normalizeString(targetHeaderName);
+                
+                // Try exact match after normalization
+                const exactIndex = headers.findIndex(h => normalizeString(h) === normalizedTarget);
+                if (exactIndex !== -1) {
+                    return exactIndex;
+                }
+                
+                // If strict is true, do not fall back to includes
+                if (strict) {
+                    console.warn(`Strict header '${targetHeaderName}' (normalized to '${normalizedTarget}') not found exactly in CSV after normalization. This column might be missing or misnamed.`);
+                    return -1;
+                }
+                
+                // Fallback to includes (case-insensitive) after normalization
+                const includesIndex = headers.findIndex(h => normalizeString(h).includes(normalizedTarget));
+                if (includesIndex !== -1) {
+                    console.warn(`Header for key '${targetHeaderName}' (normalized to '${normalizedTarget}') not found exactly, but found via 'includes' at index: ${includesIndex}. Full header: '${headers[includesIndex]}', normalized: '${normalizeString(headers[includesIndex])}'`);
+                } else {
+                    console.warn(`Header for key '${targetHeaderName}' (normalized to '${normalizedTarget}') not found in CSV (neither exact nor includes match) after normalization. This column might be missing or misnamed.`);
+                }
+                return includesIndex;
+            };
+
+            // 3. Map each field to its column index
+            const iName            = idx('Name');
+            const iImage           = idx('Profile image');
+            const iLocation        = idx('Address', true); // Strict match for Address
+            const iLat             = idx('Latitude');
+            const iLng             = idx('Longitude');
+            const iWebsite         = idx('Website');
+            const iSocial1         = idx('Socials 1');
+            const iSocial2         = idx('Socials 2');
+            const iContact         = idx('Email Address', true); // Strict match for Email Address
+
+            // Role columns
+            const iDance           = idx('dance or a person');
+            const iDJ              = idx('DJ');
+            const iFacilitator     = idx('Facilitator');
+            const iSoundHealer     = idx('Sound healer');
+            const iEventOrganiser  = idx('Event organizer?'); // Corrected: Using 'Event organizer?' to match CSV header
+            const iTeacher         = idx('teach');
+
+            facilitatorsData = [];
+
+            for (let i = 1; i < data.length; i++) {
+                const row = data[i];
+                // Skip rows missing coords or if the row is empty/malformed
+                const lat = parseFloat(row[iLat]);
+                const lng = parseFloat(row[iLng]);
+
+                // Determine the maximum index used to ensure row has enough columns
+                const maxIndex = Math.max(iName, iLocation, iLat, iLng, iContact, iSocial1, iSocial2, iDance, iDJ, iFacilitator, iSoundHealer, iEventOrganiser, iTeacher);
+                if (isNaN(lat) || isNaN(lng) || (maxIndex !== -1 && row.length <= maxIndex)) {
+                    console.warn(`Skipping row ${i+1} due to missing critical data or invalid coordinates. Row length: ${row.length}, Max index needed: ${maxIndex}`);
+                    continue; 
+                }
+
+                // Helper to check role status robustly (case-insensitive and trimmed)
+                const checkRole = (index, ...expectedValues) => {
+                    if (index === -1 || !row[index]) {
+                        console.log(`  checkRole for ${headers[index] || 'N/A'}: Column index ${index} invalid or cell empty. Returning false.`);
+                        return false;
+                    }
+                    const cellValue = String(row[index]).trim().toLowerCase(); // Ensure value is string before trim/lower
+                    const lowercasedExpectedValues = expectedValues.map(val => val.toLowerCase());
+                    const isMatch = lowercasedExpectedValues.some(val => cellValue === val);
+                    
+                    console.groupCollapsed(`  checkRole for column '${headers[index] || 'Unknown Header'}'`); // Collapsed by default
+                    console.log(`    Raw cell value: '${row[index]}'`);
+                    console.log(`    Trimmed/Lowercased cell value: '${cellValue}'`);
+                    console.log(`    Expected values (lowercased): [${lowercasedExpectedValues.join(', ')}]`);
+                    console.groupEnd();
+                    return isMatch;
+                };
+
+                const facilitator = {
+                    name:           row[iName]      || 'Unknown',
+                    image:          row[iImage]     || '',
+                    location:       row[iLocation]  || 'Location not available', // Default if empty
+                    lat, lng,
+                    website:        row[iWebsite]   || '',
+                    contact:        row[iContact]   || '',
+                    social1:        iSocial1 !== -1 ? (row[iSocial1] || '') : '',
+                    social2:        iSocial2 !== -1 ? (row[iSocial2] || '') : '',
+                    
+                    isDanceEvent:   checkRole(iDance, 'Yes', 'Dance'),
+                    isDj:           checkRole(iDJ, 'Yes', 'DJ'), 
+                    isFacilitator:  checkRole(iFacilitator, 'Yes', 'Facilitator'),
+                    isSoundHealer:  checkRole(iSoundHealer, 'Yes', 'Sound healer'),
+                    isEventOrganiser: checkRole(iEventOrganiser, 'Yes', 'Event organiser'), // Property name remains consistent
+                    isTeacher:      checkRole(iTeacher, 'Yes', 'teach'),
+                };
+                facilitatorsData.push(facilitator);
+
+                console.groupCollapsed(`Processing Facilitator: ${facilitator.name} (Row ${i+1})`);
+                console.log('Processed Facilitator Object:', facilitator);
+                console.groupEnd();
+            }
+
+            console.log('Processed total facilitators:', facilitatorsData.length);
+            updateMarkers();
+        }
+        
+        // Update markers based on filters
+        function updateMarkers() {
+            markers.clearLayers();
+            facilitatorMarkers = {}; // Clear previous mapping
+
+            const currentlyActiveFilters = Object.keys(activeFilters).filter(key => activeFilters[key]);
+            
+            console.log('--- Updating Markers ---');
+            console.log('Current active filters:', currentlyActiveFilters);
+
+            let markersAddedCount = 0;
+
+            facilitatorsData.forEach(facilitator => {
+                let matchesFilter = true; // Assume true for AND logic initially
+
+                if (currentlyActiveFilters.length === 0) {
+                    matchesFilter = true; // Show all if no filters are active
+                } else {
+                    // Special case for Dance Event: if selected, it's mutually exclusive
+                    if (activeFilters.danceEvent) {
+                        matchesFilter = facilitator.isDanceEvent;
+                        if (!matchesFilter) {
+                            console.log(`${facilitator.name} filtered out: Dance Event selected, but not a Dance Event.`);
+                        }
+                    } else {
+                        // For other filters, apply AND logic
+                        for (const type of currentlyActiveFilters) {
+                            // Skip danceEvent here, as it's handled above
+                            if (type === 'danceEvent') continue; 
+
+                            const facilitatorAttribute = 'is' + type.charAt(0).toUpperCase() + type.slice(1);
+                            
+                            // If the facilitator does NOT have this attribute, but the filter IS active,
+                            // then this facilitator does not match ALL selected filters.
+                            if (!facilitator[facilitatorAttribute]) {
+                                matchesFilter = false;
+                                console.log(`${facilitator.name} filtered out: Missing attribute '${facilitatorAttribute}' for active filter '${type}'.`);
+                                break; 
+                            }
+                        }
+                    }
+                }
+                
+                if (matchesFilter) {
+                    const marker = L.marker([facilitator.lat, facilitator.lng]);
+                    marker.facilitatorData = facilitator; // Attach the facilitator data to the marker
+                    marker.bindPopup(createPopupContent(facilitator));
+                    markers.addLayer(marker);
+                    facilitatorMarkers[facilitator.name] = marker; // Store marker by name
+                    markersAddedCount++;
+                    console.log(`${facilitator.name}: Added to map.`);
+                } else {
+                    console.log(`${facilitator.name}: Not added to map.`);
+                }
+            });
+            
+            console.log('Markers added to map:', markersAddedCount);
+            saveState();
+        }
+        
+        // Create popup content
+        function createPopupContent(facilitator) {
+            let html = '<div class="popup-content">';
+            
+            // Add image if available and it's a valid URL
+            const imageUrl = facilitator.image ? facilitator.image.trim() : '';
+            const isValidImageUrl = imageUrl.startsWith('http://') || imageUrl.startsWith('https://');
+
+            if (isValidImageUrl) {
+                // console.log(`Creating popup for ${facilitator.name} with image: ${imageUrl}`); // Removed verbose logging
+                
+                let finalImageUrl = imageUrl;
+                // Convert Google Drive sharing links to direct image URLs
+                if (imageUrl.includes('drive.google.com')) {
+                    // Extract file ID from various Google Drive URL formats
+                    let fileId = null;
+                    
+                    if (imageUrl.includes('/file/d/')) {
+                        fileId = imageUrl.match(/\/file\/d\/([a-zA-Z0-9-_]+)/)?.[1];
+                    } else if (imageUrl.includes('id=')) {
+                        fileId = imageUrl.match(/id=([a-zA-Z0-9-_]+)/)?.[1];
+                    } else if (imageUrl.includes('/open?id=')) {
+                        fileId = imageUrl.match(/open\?id=([a-zA-Z0-9-_]+)/)?.[1];
+                    }
+                    
+                    if (fileId) {
+                        // Use thumbnail API for better performance and CORS compatibility
+                        finalImageUrl = `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`;
+                        // console.log(`Converted to Drive thumbnail URL: ${finalImageUrl}`); // Removed verbose logging
+                    }
+                }
+                
+                html += `<div style="text-align: center; margin-bottom: 10px;">
+                         <img src="${finalImageUrl}" alt="${facilitator.name}" 
+                              style="max-width: 100%; max-height: 150px; border-radius: 8px; display: block; margin: 0 auto;"
+                              onerror="console.error('Failed to load image for ${facilitator.name}:', this.src); this.style.display='none';">
+                         </div>`;
+            }
+            
+            html += `<div class="popup-title">${facilitator.name}</div>`;
+            html += `<div class="popup-location">📍 ${facilitator.location || 'Location not available'}</div>`;
+            
+            // Badges - Removed the 'else' block so all applicable badges display
+            html += '<div class="popup-badges">';
+            if (facilitator.isDanceEvent) html += '<span class="badge badge-dance-event">🪩 Dance Event</span>';
+            if (facilitator.isDj) html += '<span class="badge badge-dj">🎧 DJ</span>'; 
+            if (facilitator.isFacilitator) html += '<span class="badge badge-facilitator">🎤 Facilitator</span>';
+            if (facilitator.isSoundHealer) html += '<span class="badge badge-sound-healer">🎻 Sound Healer</span>';
+            if (facilitator.isEventOrganiser) html += '<span class="badge badge-event-organiser">🎪 Event Organiser</span>'; 
+            if (facilitator.isTeacher) html += '<span class="badge badge-teacher">🧑🏽‍🎓 Teacher</span>';
+            html += '</div>';
+            
+            // Links
+            html += '<div class="popup-links">';
+            
+            // Website
+            if (facilitator.website && facilitator.website.trim() !== '') {
+                const websiteUrl = facilitator.website.trim();
+                const displayUrl = websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                const shortUrl = displayUrl.length > 30 ? displayUrl.substring(0, 30) + '...' : displayUrl;
+                html += `🌐 <a href="${websiteUrl.startsWith('http') ? websiteUrl : 'https://' + websiteUrl}" target="_blank" title="${displayUrl}">${shortUrl}</a><br>`;
+            }
+
+              // Contact
+            if (facilitator.contact && facilitator.contact.trim() !== '') {
+                const contact = facilitator.contact.trim();
+                const phoneLink = contact.replace(/\D/g, '');
+                html += `✉️ <a href="tel:${phoneLink}">${contact}</a><br>`;
+            }
+            
+            // Social Links - show actual URLs
+            if (facilitator.social1 && facilitator.social1.trim() !== '') {
+                const social1 = facilitator.social1.trim();
+                const social1Display = extractSocialName(social1);
+                const social1Url = social1.startsWith('http') ? social1 : 'https://' + social1;
+                html += `⭐️ <a href="${social1Url}" target="_blank" title="${social1}">${social1Display}</a><br>`;
+            }
+            
+            if (facilitator.social2 && facilitator.social2.trim() !== '') {
+                const social2 = facilitator.social2.trim();
+                const social2Display = extractSocialName(social2);
+                const social2Url = social2.startsWith('http') ? social2 : 'https://' + social2;
+                html += `💫 <a href="${social2Url}" target="_blank" title="${social2}">${social2Display}</a>`;
+            }
+            
+          
+            
+            html += '</div>';
+
+            // Add "Get Directions" button for Dance Events with detailed addresses
+            if (facilitator.isDanceEvent && facilitator.location && isDetailedAddress(facilitator.location)) {
+                const encodedLocation = encodeURIComponent(facilitator.location);
+                const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedLocation}`;
+                html += `<a href="${googleMapsUrl}" target="_blank" class="popup-button">Get Directions</a>`;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        // Helper function to determine if an address is detailed enough for directions
+        function isDetailedAddress(address) {
+            if (!address || address.trim() === '') return false;
+            const trimmedAddress = address.trim();
+            
+            const hasDigits = /[0-9]/.test(trimmedAddress);
+            const hasMultipleCommas = (trimmedAddress.match(/,/g) || []).length >= 2;
+            const wordCount = trimmedAddress.split(/\s+/).length;
+            const isLongEnough = wordCount >= 4; // e.g., "123 Main Street, City, Country" has 5 words
+
+            return hasDigits || hasMultipleCommas || isLongEnough; 
+        }
+        
+        // Extract a readable name from social media URLs
+        function extractSocialName(url) {
+            try {
+                // Add protocol if missing
+                const urlToParse = url.startsWith('http') ? url : 'https://' + url;
+                const urlObj = new URL(urlToParse);
+                const hostname = urlObj.hostname.replace('www.', '');
+                const pathname = urlObj.pathname;
+                
+                // Handle common social media platforms
+                if (hostname.includes('instagram.com')) {
+                    const username = pathname.match(/\/([^\/\?]+)\/?$/)?.[1];
+                    return username ? `instagram.com/${username}` : hostname;
+                } else if (hostname.includes('facebook.com')) {
+                    const pageName = pathname.match(/\/([^\/\?]+)\/?$/)?.[1];
+                    return pageName && pageName !== 'profile.php' ? `facebook.com/${pageName}` : hostname;
+                } else if (hostname.includes('twitter.com') || hostname.includes('x.com')) {
+                    const username = pathname.match(/\/([^\/\?]+)\/?$/)?.[1];
+                    return username ? `${hostname}/${username}` : hostname;
+                } else if (hostname.includes('linkedin.com')) {
+                    if (pathname.includes('/in/')) {
+                        const username = pathname.match(/\/in\/([^\/\?]+)\/?$/)?.[1];
+                        return username ? `linkedin.com/in/${username}` : hostname;
+                    } else if (pathname.includes('/company/')) {
+                        const company = pathname.match(/\/company\/([^\/\?]+)\/?$/)?.[1];
+                        return company ? `linkedin.com/company/${company}` : hostname;
+                    }
+                    return hostname;
+                } else if (hostname.includes('youtube.com')) {
+                    if (pathname.includes('/channel/') || pathname.includes('/c/') || pathname.includes('/user/')) {
+                        const channel = pathname.match(/\/(c|channel|user)\/([^\/\?]+)\/?$/)?.[2];
+                        return channel ? `youtube.com/${channel}` : hostname;
+                    } else if (pathname.includes('/@')) {
+                        const handle = pathname.match(/\/@([^\/\?]+)\/?$/)?.[1];
+                        return handle ? `youtube.com/@${handle}` : hostname;
+                    }
+                    return hostname;
+                } else if (hostname.includes('tiktok.com')) {
+                    const username = pathname.match(/\/@([^\/\?]+)\/?$/)?.[1];
+                    return username ? `tiktok.com/@${username}` : hostname;
+                } else {
+                    // For other URLs, show the domain
+                    return hostname;
+                }
+            } catch (e) {
+                // If URL parsing fails, return the original URL cleaned up
+                console.error('Error parsing URL:', url, e);
+                const cleanUrl = url.replace(/^https?:\/\//, '').replace(/^www\./, '');
+                return cleanUrl.length > 40 ? cleanUrl.substring(0, 40) + '...' : cleanUrl;
+            }
+        }
+        
+        // Search location or facilitator name
+        function searchLocation() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (!query) {
+                // If query is empty, remove search circle and update markers based on filters
+                if (currentSearchCircle) {
+                    map.removeLayer(currentSearchCircle);
+                    currentSearchCircle = null;
+                }
+                updateMarkers(); // Re-render markers based on current filters (no search constraint)
+                saveState();
+                return;
+            }
+            
+            const lowerCaseQuery = query.toLowerCase();
+            let facilitatorFoundAndPopupOpened = false;
+
+            // 1. Try to find a facilitator by name and open popup
+            for (const name in facilitatorMarkers) {
+                if (name.toLowerCase().includes(lowerCaseQuery)) {
+                    const markerToOpen = facilitatorMarkers[name];
+                    
+                    // Use zoomToShowLayer to ensure the marker is visible and then open its popup
+                    markers.zoomToShowLayer(markerToOpen, function () {
+                        markerToOpen.openPopup();
+                        // Pan the map UP by 25% of its height to make the marker appear LOWER
+                        const mapHeight = map.getSize().y;
+                        const yOffset = -mapHeight * 0.25; // Negative to pan up
+                        map.panBy([0, yOffset]);
+                    });
+
+                    // Remove any previous search circle if a facilitator is found
+                    if (currentSearchCircle) {
+                        map.removeLayer(currentSearchCircle);
+                        currentSearchCircle = null;
+                    }
+                    
+                    facilitatorFoundAndPopupOpened = true;
+                    break; // Found a match, exit loop
+                }
+            }
+
+            if (facilitatorFoundAndPopupOpened) {
+                saveState();
+                return; // Exit if a facilitator was found and popup opened
+            }
+
+            // 2. If no facilitator found, proceed with location search using Nominatim
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        const result = data[0];
+                        const lat = parseFloat(result.lat);
+                        const lng = parseFloat(result.lon);
+                        
+                        showSearchArea(lat, lng);
+                    } else {
+                        // Using a custom modal-like message instead of alert()
+                        const overlay = document.getElementById('loadingOverlay');
+                        overlay.style.display = 'flex';
+                        overlay.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 300px;">
+                                <h4 style="color: #e74c3c; margin-bottom: 10px;">Location or Name Not Found</h4>
+                                <p>Could not find a matching location or facilitator. Please try a different search term.</p>
+                                <button onclick="document.getElementById('loadingOverlay').style.display='none';" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Search error:', error);
+                    // Using a custom modal-like message instead of alert()
+                    const overlay = document.getElementById('loadingOverlay');
+                    overlay.style.display = 'flex';
+                    overlay.innerHTML = `
+                        <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 300px;">
+                            <h4 style="color: #e74c3c; margin-bottom: 10px;">Search Error</h4>
+                            <p>An error occurred while searching. Please try again.</p>
+                            <button onclick="document.getElementById('loadingOverlay').style.display='none';" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
+                        </div>
+                    `;
+                });
+        }
+        
+        // Search near current location
+        function searchNearMe() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        showSearchArea(position.coords.latitude, position.coords.longitude);
+                    },
+                    error => {
+                        // Using a custom modal-like message instead of alert()
+                        const overlay = document.getElementById('loadingOverlay');
+                        overlay.style.display = 'flex';
+                        overlay.innerHTML = `
+                            <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 300px;">
+                                <h4 style="color: #e74c3c; margin-bottom: 10px;">Location Error</h4>
+                                <p>Unable to get your current location. Please ensure location services are enabled for this site.</p>
+                                <button onclick="document.getElementById('loadingOverlay').style.display='none';" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
+                            </div>
+                        `;
+                    }
+                );
+            } else {
+                // Using a custom modal-like message instead of alert()
+                const overlay = document.getElementById('loadingOverlay');
+                overlay.style.display = 'flex';
+                overlay.innerHTML = `
+                    <div style="text-align: center; padding: 20px; background: white; border-radius: 8px; box-shadow: var(--shadow); max-width: 300px;">
+                        <h4 style="color: #e74c3c; margin-bottom: 10px;">Browser Not Supported</h4>
+                        <p>Geolocation is not supported by your browser. Please try a different browser.</p>
+                        <button onclick="document.getElementById('loadingOverlay').style.display='none';" style="margin-top: 20px; padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Show search area circle
+        function showSearchArea(lat, lng) {
+            // Remove previous circle
+            if (currentSearchCircle) {
+                map.removeLayer(currentSearchCircle);
+            }
+            
+            // Add new circle
+            currentSearchCircle = L.circle([lat, lng], {
+                radius: searchRadius,
+                fillColor: '#3498db',
+                fillOpacity: 0.1,
+                color: '#3498db',
+                weight: 2
+            }).addTo(map);
+            
+            // Zoom to circle bounds
+            map.fitBounds(currentSearchCircle.getBounds());
+            
+            saveState();
+        }
+
+        // Function to toggle clear search button visibility
+        function toggleClearButtonVisibility() {
+            const searchInput = document.getElementById('searchInput');
+            const clearSearchButton = document.getElementById('clearSearchButton');
+            if (searchInput.value.length > 0) {
+                clearSearchButton.style.display = 'block';
+            } else {
+                clearSearchButton.style.display = 'none';
+            }
+        }
+
+        // Function to clear search input
+        function clearSearchInput() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            toggleClearButtonVisibility(); // Hide the button
+            searchInput.focus(); // Focus the search bar
+            if (currentSearchCircle) {
+                map.removeLayer(currentSearchCircle);
+                currentSearchCircle = null;
+            }
+            updateMarkers(); // Re-render markers based on current filters (no search constraint)
+            saveState();
+        }
+        
+        // Setup filter listeners
+        function setupFilterListeners() {
+            const addFilterButton = document.getElementById('addFilterButton');
+            const filterDropdown = document.getElementById('filterDropdown');
+            const filterDoneButton = document.getElementById('filterDoneButton');
+
+            // Toggle dropdown visibility and active state
+            addFilterButton.addEventListener('click', (event) => {
+                filterDropdown.classList.toggle('show');
+                addFilterButton.classList.toggle('active'); // Toggle active class
+                event.stopPropagation(); // Prevent click from immediately closing it
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!filterDropdown.contains(event.target) && !addFilterButton.contains(event.target)) {
+                    filterDropdown.classList.remove('show');
+                    addFilterButton.classList.remove('active'); // Remove active class
+                }
+            });
+
+            // Handle checkbox changes in the dropdown
+            filterDropdown.querySelectorAll('.filter-dropdown-item input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', (event) => {
+                    // Get the filter type directly from the parent div's data-filter-type attribute
+                    const filterDropdownItem = event.target.closest('.filter-dropdown-item');
+                    if (!filterDropdownItem) {
+                        console.error("Could not find parent .filter-dropdown-item for checkbox:", event.target);
+                        return;
+                    }
+                    const filterType = filterDropdownItem.dataset.filterType;
+
+                    if (filterType === 'danceEvent') {
+                        // If dance event is selected, deselect all other filters
+                        for (const key in activeFilters) {
+                            if (key !== 'danceEvent') {
+                                activeFilters[key] = false;
+                                const otherMeta = filterMeta[key];
+                                if (otherMeta) {
+                                    const otherCheckbox = document.getElementById(`filter${otherMeta.idSuffix}`);
+                                    if (otherCheckbox) {
+                                        otherCheckbox.checked = false;
+                                    }
+                                }
+                            }
+                        }
+                        activeFilters.danceEvent = event.target.checked;
+                        // Do not close dropdown or change button state here, let "Done" button or outside click handle it
+                    } else {
+                        // If any other filter is selected, ensure dance event is deselected
+                        if (activeFilters.danceEvent) {
+                            activeFilters.danceEvent = false;
+                            const danceEventCheckbox = document.getElementById('filterDanceEvent');
+                            if (danceEventCheckbox) {
+                                danceEventCheckbox.checked = false;
+                            }
+                        }
+                        activeFilters[filterType] = event.target.checked;
+                    }
+                    renderFilterChips();
+                    updateMarkers();
+                });
+            });
+
+            // Handle "Done" button click
+            filterDoneButton.addEventListener('click', () => {
+                filterDropdown.classList.remove('show');
+                addFilterButton.classList.remove('active'); // Remove active class
+            });
+        }
+
+        // Function to clear all filters
+        function clearAllFilters() {
+            for (const type in activeFilters) {
+                activeFilters[type] = false;
+                const meta = filterMeta[type];
+                if (meta) {
+                    const checkbox = document.getElementById(`filter${meta.idSuffix}`);
+                    if (checkbox) {
+                        checkbox.checked = false;
+                    }
+                }
+            }
+            renderFilterChips();
+            updateMarkers();
+        }
+
+        // Render filter chips in the filter panel
+        function renderFilterChips() {
+            const filterPanel = document.getElementById('filterPanel');
+            // Clear existing chips and the clear-all-button, but keep the "Add Filter" button
+            const existingElements = filterPanel.querySelectorAll('.filter-chip, .clear-all-button');
+            existingElements.forEach(el => el.remove());
+
+            const currentlyActiveFiltersCount = Object.keys(activeFilters).filter(key => activeFilters[key]).length;
+
+            // Add individual filter chips first
+            for (const type in activeFilters) {
+                if (activeFilters[type]) {
+                    const meta = filterMeta[type];
+                    if (meta) {
+                        const chip = document.createElement('div');
+                        chip.className = 'filter-chip';
+                        chip.style.backgroundColor = meta.colorVar;
+                        chip.innerHTML = `
+                            ${meta.emoji} ${meta.name}
+                            <button class="close-chip" data-filter-type="${type}">×</button>
+                        `;
+                        filterPanel.appendChild(chip);
+
+                        chip.querySelector('.close-chip').addEventListener('click', (event) => {
+                            const filterTypeToRemove = event.target.dataset.filterType; 
+                            activeFilters[filterTypeToRemove] = false;
+                            const checkboxMeta = filterMeta[filterTypeToRemove];
+                            if (checkboxMeta) {
+                                const checkbox = document.getElementById(`filter${checkboxMeta.idSuffix}`);
+                                if (checkbox) {
+                                    checkbox.checked = false;
+                                }
+                            }
+                            renderFilterChips();
+                            updateMarkers();
+                            event.stopPropagation();
+                        });
+                    } else {
+                        console.warn(`Filter type '${type}' found in activeFilters but not in filterMeta.`);
+                    }
+                }
+            }
+
+            // Add Clear All button if two or more filters are active
+            if (currentlyActiveFiltersCount >= 2) {
+                const clearAllButton = document.createElement('button');
+                clearAllButton.className = 'clear-all-button';
+                clearAllButton.innerHTML = `Clear All <span class="close-icon">×</span>`;
+                clearAllButton.onclick = clearAllFilters;
+                filterPanel.appendChild(clearAllButton);
+            }
+
+            // If no chips, ensure all checkboxes are unchecked and map shows all
+            if (currentlyActiveFiltersCount === 0) { // Check count directly
+                for (const type in activeFilters) {
+                    activeFilters[type] = false;
+                    const meta = filterMeta[type];
+                    if (meta) {
+                        const checkbox = document.getElementById(`filter${meta.idSuffix}`);
+                        if (checkbox) {
+                            checkbox.checked = false;
+                        }
+                    }
+                }
+                updateMarkers(); // Show all markers if no filters are active
+            }
+        }
+        
+        // Save state to localStorage
+        function saveState() {
+            if (!map) return;
+            
+            try {
+                const state = {
+                    filters: activeFilters,
+                    mapCenter: map.getCenter(),
+                    mapZoom: map.getZoom()
+                };
+                
+                localStorage.setItem('millionMoversState', JSON.stringify(state));
+            } catch (error) {
+                console.error('Error saving state:', error);
+            }
+        }
+        
+        // Load state from localStorage
+        function loadState() {
+            for (const type in filterMeta) {
+                activeFilters[type] = false;
+            }
+
+            const savedState = localStorage.getItem('millionMoversState');
+            if (savedState) {
+                try {
+                    const state = JSON.parse(savedState);
+                    
+                    if (state.filters) {
+                        for (const type in state.filters) {
+                            if (filterMeta[type] !== undefined) {
+                                activeFilters[type] = state.filters[type];
+                            }
+                        }
+                    }
+                    
+                    for (const type in activeFilters) {
+                        const meta = filterMeta[type];
+                        if (meta) {
+                            const checkbox = document.getElementById(`filter${meta.idSuffix}`);
+                            if (checkbox) {
+                                checkbox.checked = activeFilters[type];
+                            }
+                        }
+                    }
+                    
+                    if (state.mapCenter && state.mapZoom) {
+                        map.setView([state.mapCenter.lat, state.mapCenter.lng], state.mapZoom);
+                    }
+                } catch (error) {
+                    console.error('Error loading saved state:', error);
+                    for (const key in activeFilters) {
+                        activeFilters[key] = false;
+                    }
+                }
+            } else {
+                for (const key in activeFilters) {
+                    activeFilters[key] = false;
+                }
+            }
+        }
+        
+        // Initialize when everything is loaded
+        window.addEventListener('load', function() {
+            // Double-check Leaflet is available
+            if (typeof L === 'undefined') {
+                console.error('Leaflet library not found');
+                document.getElementById('loadingOverlay').innerHTML = 'Error: Map library failed to load. Please check your internet connection and refresh.';
+                return;
+            }
+            
+            initMap();
+        });
+    </script>
+</body>
+</html>

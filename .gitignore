@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+*.log
+.gemini/
+scratch/
+implementation_plan.md

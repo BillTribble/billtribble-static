@@ -1,0 +1,45 @@
+    </main>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="copyright-text">Copyleft cc-by-nc-sa 2026 Bill Tribble</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Theme Synchronization Script -->
+  <script>
+    // Sync theme with container / parent window if data-theme exists there,
+    // otherwise fallback to auto (system preference)
+    const updateTheme = () => {
+      try {
+        const parentTheme = window.parent.document.documentElement.getAttribute('data-theme') 
+                         || window.parent.document.body.getAttribute('data-theme');
+        if (parentTheme) {
+          document.documentElement.setAttribute('data-theme', parentTheme);
+          return;
+        }
+      } catch (e) {
+        // CORS restriction or standard standalone tab
+      }
+      
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', systemDark ? 'dark' : 'light');
+    };
+
+    updateTheme();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+    // Watch parent Helix window for mutations
+    try {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === 'data-theme') {
+            updateTheme();
+          }
+        });
+      });
+      observer.observe(window.parent.document.documentElement, { attributes: true });
+    } catch(e) {}
+  </script>
+</body>
+</html>
