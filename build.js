@@ -114,7 +114,7 @@ function build() {
   console.log('Compiling static pages...');
 
   // 1. Compile Homepage
-  const homeHtml = compilePage('home', 'Home', 'Musician, DJ, and conscious dance facilitator.');
+  const homeHtml = compilePage('home', 'Home', 'Musician, DJ, and facilitator.');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), homeHtml);
   console.log('Compiled: index.html');
 

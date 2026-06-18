@@ -60,6 +60,34 @@
   --color-home-prompt-2: #00354A;
   --color-selection-background: #cae5ff;
   --color-selection-text: #000000;
+
+  /* Typescale Tokens */
+  --md-sys-typescale-display-large-size: 64px;
+  --md-sys-typescale-display-large-line-height: 76px;
+  
+  --md-sys-typescale-display-medium-size: 48px;
+  --md-sys-typescale-display-medium-line-height: 52px;
+  
+  --md-sys-typescale-title-large-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  
+  --md-sys-typescale-title-medium-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
+  
+  --md-sys-typescale-body-large-size: 18px;
+  --md-sys-typescale-body-large-line-height: 28px;
+  
+  --md-sys-typescale-body-medium-size: 16px;
+  --md-sys-typescale-body-medium-line-height: 24px;
+  
+  --md-sys-typescale-body-small-size: 14px;
+  --md-sys-typescale-body-small-line-height: 20px;
+  
+  --md-sys-typescale-label-large-size: 14px;
+  --md-sys-typescale-label-large-line-height: 20px;
+  
+  --md-sys-typescale-label-medium-size: 12px;
+  --md-sys-typescale-label-medium-line-height: 16px;
 }
 
 /* Google Theme - Dark Mode */
