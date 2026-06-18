@@ -363,7 +363,7 @@ body {
 .highlight-item, .post-item {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
@@ -582,7 +582,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 .post-header {
