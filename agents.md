@@ -45,6 +45,7 @@ Efficiency:
 Don't waste the user's time.
 Don't run tests before making changes.
 Don't make unnecessary tool calls. It's fine to make many tool calls but they have to be relevant to the issue at hand.
+Only use the browser tool if the user explicitly asks you to.
 Where it makes sense and will not cause clashes, use subagents to speed up the build process.
 After running for a long time, reconsider if it would be best to stop and communicate with the user.
 Communication:

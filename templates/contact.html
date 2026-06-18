@@ -6,7 +6,17 @@
   </header>
   
   <div class="entry-content">
-    <p class="wp-block-paragraph">I'd love to hear from you! Please drop me a line at: <a href="mailto:booking@billtribble.com">booking@billtribble.com</a></p>
+    <p class="wp-block-paragraph">I'd love to hear from you! Please drop me a line at: <button id="reveal-email-btn" class="reveal-btn">Reveal email</button></p>
+    <script>
+      document.getElementById('reveal-email-btn').addEventListener('click', function() {
+        const u = "booking";
+        const d = "billtribble.com";
+        const a = document.createElement('a');
+        a.href = 'ma' + 'il' + 'to:' + u + '@' + d;
+        a.textContent = u + '@' + d;
+        this.parentNode.replaceChild(a, this);
+      });
+    </script>
     <p class="wp-block-paragraph">or add me on <a href="https://www.instagram.com/bill_tribble/" target="_blank" rel="noopener">Instagram</a></p>
   </div>
 </article>
