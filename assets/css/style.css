@@ -305,7 +305,7 @@ body {
   border-radius: 16px;
 }
 
-.video-embed-container iframe, .embed-container iframe, iframe, video {
+.video-embed-container iframe, .embed-container iframe, video {
   position: absolute;
   top: 0;
   left: 0;

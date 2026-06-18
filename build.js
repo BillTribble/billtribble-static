@@ -65,7 +65,9 @@ function loadTemplate(name) {
   return fs.readFileSync(path.join(TEMPLATES_DIR, `${name}.html`), 'utf8');
 }
 
-function compilePage(templateName, title, description, contentReplacements = {}) {
+function compilePage(templateName, title, description, contentReplacements = {}, isNested = false) {
+  const baseUrl = isNested ? '../' : './';
+  
   const header = loadTemplate('partials/header')
     .replace('{{title}}', toSentenceCase(title))
     .replace('{{description}}', description);
@@ -74,6 +76,9 @@ function compilePage(templateName, title, description, contentReplacements = {})
   let pageTemplate = loadTemplate(templateName)
     .replace('{{header}}', header)
     .replace('{{footer}}', footer);
+
+  // Replace base_url placeholder
+  pageTemplate = pageTemplate.split('{{base_url}}').join(baseUrl);
 
   // Apply custom content replacements
   for (const [key, value] of Object.entries(contentReplacements)) {
@@ -129,7 +134,7 @@ function build() {
   // 5. Compile Holy Portal Records (Master Category Page)
   const postsLoopHtml = posts.map(post => `
     <div class="post-item">
-      <h2 class="entry-title"><a href="/posts/${post.slug}.html">${toSentenceCase(post.title)}</a></h2>
+      <h2 class="entry-title"><a href="./posts/${post.slug}.html">${toSentenceCase(post.title)}</a></h2>
       <div class="post-meta"><span class="post-date">${post.date}</span></div>
       <div class="entry-content">${post.content}</div>
     </div>
@@ -148,7 +153,7 @@ function build() {
       '{{post_title}}': toSentenceCase(post.title),
       '{{post_date}}': post.date,
       '{{post_content}}': post.content
-    });
+    }, true);
     fs.writeFileSync(path.join(POSTS_OUTPUT_DIR, `${post.slug}.html`), postHtml);
     console.log(`Compiled: posts/${post.slug}.html`);
   });

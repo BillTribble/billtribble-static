@@ -9,26 +9,26 @@
         <p class="profile-subtitle">Musician, DJ, and facilitator for conscious dance. Resident at Ecstatic Dance UK, London.</p>
       </div>
       <div class="avatar-container">
-        <img src="/assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
+        <img src="{{base_url}}assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
       </div>
       <div class="divider"></div>
       <div class="links-section">
         <h2 class="section-title">Links</h2>
         <div class="links-buttons">
           <a href="https://billtribble.bandcamp.com/" target="_blank" class="link-btn">
-            <img src="/assets/images/icons/musical-note-48.png" alt="" class="btn-icon">
+            <img src="{{base_url}}assets/images/icons/musical-note-48.png" alt="" class="btn-icon">
             <span>Bandcamp</span>
           </a>
-          <a href="/samsara-looper/" class="link-btn highlight-btn">
-            <img src="/assets/images/samsara-logo-white.png" alt="" class="btn-icon logo-icon">
+          <a href="{{base_url}}samsara-looper/" class="link-btn highlight-btn">
+            <img src="{{base_url}}assets/images/samsara-logo-white.png" alt="" class="btn-icon logo-icon">
             <span>Samsara Looper</span>
           </a>
           <a href="https://www.instagram.com/bill_tribble/" target="_blank" class="link-btn">
-            <img src="/assets/images/icons/Instagram-White-Icons.png" alt="" class="btn-icon">
+            <img src="{{base_url}}assets/images/icons/Instagram-White-Icons.png" alt="" class="btn-icon">
             <span>Instagram</span>
           </a>
           <a href="https://www.tiktok.com/@bill_tribble" target="_blank" class="link-btn">
-            <img src="/assets/images/icons/tiktok-simplified-white-icon.webp" alt="" class="btn-icon">
+            <img src="{{base_url}}assets/images/icons/tiktok-simplified-white-icon.webp" alt="" class="btn-icon">
             <span>TikTok</span>
           </a>
         </div>
@@ -38,7 +38,7 @@
     <!-- Right Column: Featured Video loop -->
     <div class="video-column">
       <div class="video-wrapper border-radius-16">
-        <video id="drumVideo" autoplay loop muted playsinline src="/assets/video/me-drum-edit-2.mov"></video>
+        <video id="drumVideo" autoplay loop muted playsinline src="{{base_url}}assets/video/me-drum-edit-2.mov"></video>
         <div class="video-overlay">
           <button id="unmuteButton" class="unmute-toggle">Unmute video 🔈</button>
         </div>
@@ -56,21 +56,21 @@
     <!-- Highlights from Releases -->
     <section class="highlights-section">
       <div class="highlight-item">
-        <h2 class="entry-title"><a href="/posts/lucid-crystal-temple.html">Lucid Crystal Temple</a></h2>
+        <h2 class="entry-title"><a href="{{base_url}}posts/lucid-crystal-temple.html">Lucid Crystal Temple</a></h2>
         <div class="video-embed-container">
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/Zl1htsK8QAg" title="Lucid Crystal Temple" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <p class="highlight-desc">Inspired by a spiritual experience in early 2020, these tracks are ambient reflections of a temporarily lucid state of mind. The entire EP was recorded using just one virtual modelling instrument over one week, using a microtuning designed to produce very clear, transparent sounds.</p>
-        <p class="read-more-link"><a href="/posts/lucid-crystal-temple.html">Read the full story &rarr;</a></p>
+        <p class="read-more-link"><a href="{{base_url}}posts/lucid-crystal-temple.html">Read the full story &rarr;</a></p>
       </div>
 
       <div class="highlight-item">
-        <h2 class="entry-title"><a href="/posts/spirit-guides.html">Spirit Guides</a></h2>
+        <h2 class="entry-title"><a href="{{base_url}}posts/spirit-guides.html">Spirit Guides</a></h2>
         <div class="video-embed-container">
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/drNqTdSUQUw" title="Spirit Guides" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
         <p class="highlight-desc">A cinematic, ambient electronic album featuring my vocals and field recordings from travels round Japan and Europe – created in a hypnotic, meditative state in late nights over two decades.</p>
-        <p class="read-more-link"><a href="/posts/spirit-guides.html">Read the full story &rarr;</a></p>
+        <p class="read-more-link"><a href="{{base_url}}posts/spirit-guides.html">Read the full story &rarr;</a></p>
       </div>
     </section>
 
@@ -113,7 +113,7 @@
   });
 
   // Fetch Instagram grid from cached json
-  fetch('/assets/instagram.json')
+  fetch('{{base_url}}assets/instagram.json')
     .then(response => response.json())
     .then(posts => {
       const grid = document.getElementById('instagramGrid');
@@ -124,7 +124,7 @@
       grid.innerHTML = posts.map(post => `
         <div class="instagram-card">
           <a href="${post.permalink}" target="_blank" rel="noopener">
-            <img src="/${post.local_image_url}" alt="${post.caption ? post.caption.slice(0, 100).replace(/"/g, '&quot;') : 'Instagram Post'}" class="instagram-img">
+            <img src="{{base_url}}${post.local_image_url}" alt="${post.caption ? post.caption.slice(0, 100).replace(/"/g, '&quot;') : 'Instagram Post'}" class="instagram-img">
             <div class="instagram-card-overlay">
               <span class="instagram-heart">&hearts;</span>
             </div>
