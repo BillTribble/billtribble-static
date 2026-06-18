@@ -426,7 +426,8 @@ body {
 .highlight-desc a,
 .wp-block-paragraph a,
 .video-caption a,
-.instagram-subtitle a {
+.instagram-subtitle a,
+.entry-content a {
   color: inherit;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
@@ -438,7 +439,8 @@ body {
 .highlight-desc a:hover,
 .wp-block-paragraph a:hover,
 .video-caption a:hover,
-.instagram-subtitle a:hover {
+.instagram-subtitle a:hover,
+.entry-content a:hover {
   color: var(--color-primary);
   text-decoration-color: var(--color-primary);
 }
@@ -868,9 +870,10 @@ body {
 }
 
 /* Featured Image in Posts List */
-.post-featured-image-link {
+.entry-content .post-featured-image-link {
   display: flex;
   justify-content: center;
+  text-decoration: none;
 }
 
 .post-featured-image {
@@ -895,4 +898,19 @@ body {
   margin-bottom: 24px;
 }
 
+/* WordPress Block Editor Compatibility */
+.entry-content .wp-block-button__link {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
 
+.entry-content .wp-block-button__link:hover {
+  background-color: var(--color-inverse-primary);
+  color: var(--color-inverse-on-surface);
+}
