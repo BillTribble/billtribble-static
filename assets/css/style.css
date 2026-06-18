@@ -58,8 +58,14 @@ body {
   width: 100%;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
 .site-title {
-  font-family: inherit;
+  font-family: 'val-stencil-bold', sans-serif;
   font-size: 25px;
   color: var(--color-on-surface);
   text-decoration: none;
@@ -727,6 +733,13 @@ body {
   
   .header-content {
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 16px;
   }
   
