@@ -53,9 +53,10 @@
   <div class="homepage-columns">
     <!-- Left Column: Profile & Links -->
     <div class="profile-column">
-      <h1 class="hero-title">Bill&nbsp;Tribble</h1>
+      <!-- Note: Bill Tribble title removed per user request -->
       <div class="profile-info">
-        <p class="profile-subtitle">Musician, DJ, and facilitator for conscious dance. Resident at Ecstatic Dance UK,&nbsp;London.</p>
+        <p class="profile-subtitle">Musician, creative technologist, DJ, and facilitator for conscious&nbsp;dance.</p>
+        <p class="profile-subtitle">Resident at Ecstatic Dance UK,&nbsp;London.</p>
       </div>
       <div class="avatar-container">
         <img src="./assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
@@ -68,7 +69,7 @@
             <img src="./assets/images/icons/musical-note-48.png" alt="" class="btn-icon">
             <span>Bandcamp</span>
           </a>
-          <a href="./samsara-looper/" class="link-btn highlight-btn">
+          <a href="https://billtribble.github.io/Samsara-Looper/" target="_blank" class="link-btn highlight-btn">
             <img src="./assets/images/samsara-logo-white.png" alt="" class="btn-icon logo-icon">
             <span>Samsara Looper</span>
           </a>
@@ -80,17 +81,24 @@
             <img src="./assets/images/icons/tiktok-simplified-white-icon.webp" alt="" class="btn-icon">
             <span>TikTok</span>
           </a>
+          <a href="https://billtribble.github.io/" target="_blank" class="link-btn">
+            <img src="./assets/images/icons/github-light.svg" alt="" class="btn-icon">
+            <span>Github (code experiments)</span>
+          </a>
         </div>
       </div>
     </div>
 
     <!-- Right Column: Featured Video loop -->
     <div class="video-column">
-      <div class="video-wrapper border-radius-16">
-        <video id="drumVideo" autoplay loop muted playsinline src="./assets/video/me-drum-edit-2.mov"></video>
-        <div class="video-overlay">
-          <button id="unmuteButton" class="unmute-toggle">Unmute video 🔈</button>
+      <div class="video-content-container">
+        <div class="video-wrapper border-radius-16">
+          <video id="drumVideo" autoplay loop muted playsinline src="./assets/video/me-drum-edit-2.mov"></video>
+          <div class="video-overlay">
+            <button id="unmuteButton" class="unmute-toggle">Unmute video 🔈</button>
+          </div>
         </div>
+        <p class="video-caption">Me on the drums supporting an amazing set by <a href="https://soundcloud.com/osarasound" target="_blank" rel="noopener">Osara</a>.</p>
       </div>
     </div>
   </div>
@@ -99,6 +107,7 @@
   <div class="main-content-flow">
     <!-- SoundCloud Section -->
     <section class="soundcloud-section">
+      <h2 class="section-title">DJ sets, remixes and original&nbsp;tracks</h2>
       <iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bill_tribble&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"></iframe>
     </section>
 
@@ -106,20 +115,29 @@
     <section class="highlights-section">
       <div class="highlight-item">
         <h2 class="entry-title"><a href="./posts/lucid-crystal-temple.html">Lucid Crystal&nbsp;Temple</a></h2>
+        <p class="highlight-desc">Inspired by a spiritual experience in early 2020, these tracks are ambient reflections of a temporarily lucid state of mind. The entire EP was recorded using just one virtual modelling instrument over one week, using a microtuning designed to produce very clear, transparent&nbsp;sounds.</p>
         <div class="video-embed-container">
           <iframe width="100%" height="500" src="https://www.youtube.com/embed/Zl1htsK8QAg" title="Lucid Crystal Temple" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-        <p class="highlight-desc">Inspired by a spiritual experience in early 2020, these tracks are ambient reflections of a temporarily lucid state of mind. The entire EP was recorded using just one virtual modelling instrument over one week, using a microtuning designed to produce very clear, transparent&nbsp;sounds.</p>
-        <p class="read-more-link"><a href="./posts/lucid-crystal-temple.html">Read the full story&nbsp;&rarr;</a></p>
       </div>
 
       <div class="highlight-item">
         <h2 class="entry-title"><a href="./posts/spirit-guides.html">Spirit&nbsp;Guides</a></h2>
-        <div class="video-embed-container">
-          <iframe width="100%" height="500" src="https://www.youtube.com/embed/drNqTdSUQUw" title="Spirit Guides" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
         <p class="highlight-desc">A cinematic, ambient electronic album featuring my vocals and field recordings from travels round Japan and Europe – created in a hypnotic, meditative state in late nights over two&nbsp;decades.</p>
-        <p class="read-more-link"><a href="./posts/spirit-guides.html">Read the full story&nbsp;&rarr;</a></p>
+        <div class="video-embed-container">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/drNqTdSUQUw" title="Spirit Guides - Video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="video-embed-container" style="margin-top: 20px;">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/OMfo5EPHh20" title="Spirit Guides - Video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="highlight-item">
+        <h2 class="entry-title"><a href="./posts/le-garage-hermetique.html">Le Garage&nbsp;Hermétique</a></h2>
+        <p class="highlight-desc">A tribute album to visionary French artist Moebius (aka Jean Giraud). Stream the whole album <a href="https://distrokid.com/hyperfollow/billtribble/le-garage-hermtique-2" target="_blank" rel="noopener">here</a>.</p>
+        <div class="video-embed-container">
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/NMDZZVQ-9JU" title="Le Garage Hermétique" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
       </div>
     </section>
 
@@ -127,20 +145,24 @@
     <section class="adventures-section">
       <h2 class="section-title">Previous&nbsp;adventures</h2>
       <ul class="adventures-list">
-        <li>Ecstatic Dance UK,&nbsp;London</li>
-        <li>One Heart Festival,&nbsp;Devon</li>
-        <li>Buddhafield Festival,&nbsp;Somerset</li>
-        <li>Ecstatic Dance&nbsp;Bristol</li>
-        <li>Ecstatic Dance Tokyo,&nbsp;Japan</li>
-        <li>Womb, Tokyo,&nbsp;Japan</li>
-        <li>AgeHa, Tokyo,&nbsp;Japan</li>
-        <li>Ministry of Sound,&nbsp;London</li>
+        <li>Resident at Ecstatic Dance UK since&nbsp;2023</li>
+        <li>Boomtown&nbsp;Festival</li>
+        <li>Om and Bass festivals (UK,&nbsp;Cyprus)</li>
+        <li>Ecstatic Dance&nbsp;Tokyo</li>
+        <li>Ecstatic Dance&nbsp;London</li>
+        <li>Ecstatic Dance&nbsp;Ireland</li>
+        <li>Ecstatic Dance&nbsp;Brighton</li>
+        <li>Temenos&nbsp;(London)</li>
+        <li>Rave OM&nbsp;(Cornwall)</li>
+        <li>Tribal&nbsp;Heart</li>
+        <li>Ecstatic&nbsp;Playground</li>
       </ul>
     </section>
 
     <!-- Instagram Feed Grid -->
     <section class="instagram-section">
-      <h2 class="section-title">Instagram&nbsp;feed</h2>
+      <h2 class="section-title"><a href="https://www.instagram.com/bill_tribble/" target="_blank">Instagram</a></h2>
+      <p class="instagram-subtitle">More here: <a href="https://www.instagram.com/bill_tribble/" target="_blank">@bill_tribble</a></p>
       <div id="instagramGrid" class="instagram-grid">
         <!-- Dynmically loaded client side -->
       </div>
