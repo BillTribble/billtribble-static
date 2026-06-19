@@ -59,12 +59,8 @@
         <p class="profile-subtitle">Musician, creative technologist, DJ, and&nbsp;facilitator.</p>
         <p class="profile-subtitle">Resident at Ecstatic Dance UK,&nbsp;London.</p>
       </div>
-      <div class="avatar-container" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+      <div class="avatar-container">
         <img src="./assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
-        <div class="avatar-controls" style="display: flex; gap: 8px; align-items: center; margin-top: 8px;">
-          <button id="showNumberBtn" style="padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 12px; background-color: var(--color-surface-container-high); color: var(--color-on-surface);">Show number</button>
-          <span id="avatarVersionNum" style="display: none; font-size: 14px; font-weight: bold; color: var(--color-on-surface);">1</span>
-        </div>
       </div>
       <div class="divider"></div>
       <div class="links-section">
@@ -91,7 +87,7 @@
             <span>Holy Portal Records</span>
           </a>
           <a href="https://billtribble.github.io/" target="_blank" class="link-btn">
-            <img src="./assets/images/icons/code.svg" alt="" class="btn-icon">
+            <img src="./assets/images/icons/github-light.svg" alt="" class="btn-icon">
             <span>Github experiments</span>
           </a>
           <a href="./contact.html" class="link-btn">
@@ -222,108 +218,7 @@
       grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
     });
 
-  // Cycle link button colors (10 variations of Slate Teal)
-  (function() {
-    const linksTitle = document.querySelector('.links-section .section-title');
-    const linksContainer = document.querySelector('.links-buttons');
-    const variations = [
-      null, // State 0: Original Outlined
-      { bg: '#0f2b2e', text: '#9ef3fb', hoverBg: '#163e42' }, // 1. Rich Dark Teal
-      { bg: '#122022', text: '#a0dce2', hoverBg: '#1a2d30' }, // 2. Darker, More Sat
-      { bg: '#161c1d', text: '#b4cbcd', hoverBg: '#1e2627' }, // 3. Darker, Less Sat
-      { bg: '#1d2021', text: '#c7cdcf', hoverBg: '#262a2b' }, // 4. Very Dark Slate (Grayish)
-      { bg: '#202a2c', text: '#c2e7ed', hoverBg: '#2a3739' }, // 5. Base Slate Teal (original option 5)
-      { bg: '#2c3537', text: '#ccdadd', hoverBg: '#374345' }, // 6. Lighter, Less Sat
-      { bg: '#223f43', text: '#bfeef4', hoverBg: '#2d5358' }, // 7. Lighter, More Sat
-      { bg: '#404a4c', text: '#dbedf0', hoverBg: '#4c5759' }, // 8. Even Lighter, Low Sat
-      { bg: '#35595e', text: '#c3f2f8', hoverBg: '#406b71' }, // 9. Even Lighter, Mid Sat
-      { bg: '#35727a', text: '#c3f7fd', hoverBg: '#408993' }  // 10. Bright Tonal
-    ];
-    let currentVariationIndex = 0;
 
-    if (linksTitle && linksContainer) {
-      linksTitle.addEventListener('click', () => {
-        currentVariationIndex = (currentVariationIndex + 1) % variations.length;
-        const current = variations[currentVariationIndex];
-        
-        if (current) {
-          linksContainer.classList.add('style-tonal-custom');
-          linksContainer.style.setProperty('--tonal-bg', current.bg);
-          linksContainer.style.setProperty('--tonal-color', current.text);
-          linksContainer.style.setProperty('--tonal-bg-hover', current.hoverBg);
-          linksTitle.textContent = `Links (${currentVariationIndex})`;
-        } else {
-          linksContainer.classList.remove('style-tonal-custom');
-          linksContainer.style.removeProperty('--tonal-bg');
-          linksContainer.style.removeProperty('--tonal-color');
-          linksContainer.style.removeProperty('--tonal-bg-hover');
-          linksTitle.textContent = 'Links';
-        }
-      });
-    }
-  })();
-
-  // Avatar Swap Script (Cycling 5 versions with number display)
-  (function() {
-    const avatar = document.querySelector('.profile-avatar');
-    const showNumberBtn = document.getElementById('showNumberBtn');
-    const versionNumSpan = document.getElementById('avatarVersionNum');
-    
-    if (avatar && showNumberBtn && versionNumSpan) {
-      const versions = [
-        { src: 'avatar.jpg', alt: 'Bill Tribble (cropped v1)' },
-        { src: 'avatar-old.jpg', alt: 'Bill Tribble (original)' },
-        { src: 'avatar-backup.jpg', alt: 'Bill Tribble (backup)' },
-        { src: 'avatar-v4.jpg', alt: 'Bill Tribble (cropped v2)' },
-        { src: 'avatar-v5.jpg', alt: 'Bill Tribble (cropped v3)' }
-      ];
-
-      // Set initial number
-      const currentSrc = avatar.src;
-      let activeIndex = 0;
-      for (let i = 0; i < versions.length; i++) {
-        if (currentSrc.endsWith(versions[i].src)) {
-          activeIndex = i;
-          break;
-        }
-      }
-      versionNumSpan.textContent = activeIndex + 1;
-
-      avatar.addEventListener('click', () => {
-        const currentSrc = avatar.src;
-        let activeVersionIndex = -1;
-        for (let i = 0; i < versions.length; i++) {
-          if (currentSrc.endsWith(versions[i].src)) {
-            activeVersionIndex = i;
-            break;
-          }
-        }
-        
-        if (activeVersionIndex !== -1) {
-          const nextIndex = (activeVersionIndex + 1) % versions.length;
-          const next = versions[nextIndex];
-          const activeSrcName = versions[activeVersionIndex].src;
-          avatar.src = currentSrc.replace(activeSrcName, next.src);
-          avatar.alt = next.alt;
-          versionNumSpan.textContent = nextIndex + 1;
-        }
-      });
-      avatar.style.cursor = 'pointer';
-
-      // Show/Hide Number Toggle
-      let showingNumber = false;
-      showNumberBtn.addEventListener('click', () => {
-        showingNumber = !showingNumber;
-        if (showingNumber) {
-          versionNumSpan.style.display = 'inline';
-          showNumberBtn.textContent = 'Hide number';
-        } else {
-          versionNumSpan.style.display = 'none';
-          showNumberBtn.textContent = 'Show number';
-        }
-      });
-    }
-  })();
 </script>
 
     </main>

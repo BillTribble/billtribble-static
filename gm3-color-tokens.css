@@ -88,6 +88,11 @@
   
   --md-sys-typescale-label-medium-size: 12px;
   --md-sys-typescale-label-medium-line-height: 16px;
+
+  /* Custom Tonal Button Tokens */
+  --color-custom-tonal-bg: #d0f2f5;
+  --color-custom-tonal-text: #052a2d;
+  --color-custom-tonal-hover-bg: #bcecf0;
 }
 
 /* Google Theme - Dark Mode */
@@ -145,4 +150,9 @@
   --color-on-tertiary-fixed: #052712;
   --color-tertiary-fixed-dim: #6DD58C;
   --color-on-tertiary-fixed-variant: #0A3818;
+
+  /* Custom Tonal Button Tokens */
+  --color-custom-tonal-bg: #0f2b2e;
+  --color-custom-tonal-text: #9ef3fb;
+  --color-custom-tonal-hover-bg: #163e42;
 }
