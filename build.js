@@ -14,7 +14,7 @@ const PROPER_NOUNS = new Set([
   'shakti', 'buddhists', 'siddhis', 'theravada', 'buddhist', 'daniel', 'ingram',
   'scriptures', 'lucifer', 'kenneth', 'anger', 'garage', 'hermétique', 'holy',
   'portal', 'records', 'tpj', 'theau', 'badrico', 'million', 'movers',
-  'crystal', 'temple', 'guides', 'forever', 'nihon'
+  'crystal', 'temple', 'guides', 'forever', 'nihon', 'actual', 'vibes'
 ]);
 
 function toSentenceCase(str) {
@@ -149,11 +149,11 @@ function build() {
     `;
   }).join('\n');
 
-  const holyportalHtml = compilePage('holyportal', 'Holy portal records', 'Release catalogue and ambient experiments.', {
+  const actualvibesHtml = compilePage('actualvibes', 'Actual vibes records', 'Release catalogue and ambient experiments.', {
     '{{posts_loop}}': postsLoopHtml
   });
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'holyportal.html'), holyportalHtml);
-  console.log('Compiled: holyportal.html');
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'actualvibes.html'), actualvibesHtml);
+  console.log('Compiled: actualvibes.html');
 
   // 6. Compile Individual Post Pages
   ensureDirectoryExistence(POSTS_OUTPUT_DIR);
