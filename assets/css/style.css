@@ -250,6 +250,11 @@ a:hover {
   color: var(--color-on-background);
 }
 
+.links-section .section-title {
+  cursor: pointer;
+  user-select: none;
+}
+
 .links-buttons {
   display: flex;
   flex-direction: column;
@@ -269,12 +274,24 @@ a:hover {
   font-weight: 600;
   font-size: var(--md-sys-typescale-label-large-size);
   line-height: var(--md-sys-typescale-label-large-line-height);
-  transition: background-color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .link-btn:hover {
   background-color: var(--color-surface-container-low);
   border-color: var(--color-primary);
+}
+
+/* Custom Tonal Style for Experimentation */
+.links-buttons.style-tonal-custom .link-btn {
+  background-color: var(--tonal-bg);
+  color: var(--tonal-color);
+  border-color: transparent;
+}
+.links-buttons.style-tonal-custom .link-btn:hover {
+  background-color: var(--tonal-bg-hover);
+  color: var(--tonal-color);
+  border-color: transparent;
 }
 
 .btn-icon {

@@ -217,6 +217,79 @@
       const grid = document.getElementById('instagramGrid');
       grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
     });
+
+  // Cycle link button colors (10 Tonal Variations)
+  (function() {
+    const linksTitle = document.querySelector('.links-section .section-title');
+    const linksContainer = document.querySelector('.links-buttons');
+    const variations = [
+      null, // State 0: Original Outlined
+      { bg: '#252526', text: '#e3e3e3', hoverBg: '#353536' }, // 1. Soft Gray
+      { bg: '#1c1c1d', text: '#c4c7c5', hoverBg: '#2a2a2b' }, // 2. Dark Gray
+      { bg: '#282a2d', text: '#dbe3e9', hoverBg: '#383a3f' }, // 3. Cool Slate
+      { bg: '#303134', text: '#e3e3e3', hoverBg: '#404144' }, // 4. Charcoal
+      { bg: '#202a2c', text: '#c2e7ed', hoverBg: '#2a3739' }, // 5. Slate Teal
+      { bg: '#162223', text: '#a2cbd0', hoverBg: '#223234' }, // 6. Muted Dark Teal
+      { bg: '#263538', text: '#d1e5e8', hoverBg: '#35474b' }, // 7. Medium Muted Teal
+      { bg: '#1a2624', text: '#b3d1cb', hoverBg: '#273835' }, // 8. Deep Forest Teal
+      { bg: '#2d3a37', text: '#e1eeeb', hoverBg: '#3c4d49' }, // 9. Dust Teal
+      { bg: '#1f2529', text: '#d2e4f0', hoverBg: '#2b3338' }  // 10. Dark Slate Blue-Gray
+    ];
+    let currentVariationIndex = 0;
+
+    if (linksTitle && linksContainer) {
+      linksTitle.addEventListener('click', () => {
+        currentVariationIndex = (currentVariationIndex + 1) % variations.length;
+        const current = variations[currentVariationIndex];
+        
+        if (current) {
+          linksContainer.classList.add('style-tonal-custom');
+          linksContainer.style.setProperty('--tonal-bg', current.bg);
+          linksContainer.style.setProperty('--tonal-color', current.text);
+          linksContainer.style.setProperty('--tonal-bg-hover', current.hoverBg);
+          linksTitle.textContent = `Links (${currentVariationIndex})`;
+        } else {
+          linksContainer.classList.remove('style-tonal-custom');
+          linksContainer.style.removeProperty('--tonal-bg');
+          linksContainer.style.removeProperty('--tonal-color');
+          linksContainer.style.removeProperty('--tonal-bg-hover');
+          linksTitle.textContent = 'Links';
+        }
+      });
+    }
+  })();
+
+  // Avatar Swap Script (Cycling 3 versions)
+  (function() {
+    const avatar = document.querySelector('.profile-avatar');
+    if (avatar) {
+      const versions = [
+        { src: 'avatar.jpg', alt: 'Bill Tribble (cropped)' },
+        { src: 'avatar-old.jpg', alt: 'Bill Tribble (original)' },
+        { src: 'avatar-backup.jpg', alt: 'Bill Tribble (backup)' }
+      ];
+
+      avatar.addEventListener('click', () => {
+        const currentSrc = avatar.src;
+        let activeVersionIndex = -1;
+        for (let i = 0; i < versions.length; i++) {
+          if (currentSrc.endsWith(versions[i].src)) {
+            activeVersionIndex = i;
+            break;
+          }
+        }
+        
+        if (activeVersionIndex !== -1) {
+          const nextIndex = (activeVersionIndex + 1) % versions.length;
+          const next = versions[nextIndex];
+          const activeSrcName = versions[activeVersionIndex].src;
+          avatar.src = currentSrc.replace(activeSrcName, next.src);
+          avatar.alt = next.alt;
+        }
+      });
+      avatar.style.cursor = 'pointer';
+    }
+  })();
 </script>
 
     </main>
