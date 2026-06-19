@@ -84,6 +84,11 @@
   color: var(--color-primary);
 }
 
+.header-socials a svg {
+  width: 20px;
+  height: 20px;
+}
+
 /* Footer Styles */
 .site-footer {
   background-color: var(--color-surface-container-lowest);
@@ -109,19 +114,24 @@
   }
   
   .header-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
 
   .header-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 16px;
   }
-  
-  .nav-menu {
-    gap: 20px;
+}
+
+/* Shrink icons on very small screens */
+@media (max-width: 400px) {
+  .header-right {
+    gap: 12px;
+  }
+  .header-socials {
+    gap: 10px;
+  }
+  .header-socials a svg {
+    width: 18px;
+    height: 18px;
   }
 }

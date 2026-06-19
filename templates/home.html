@@ -115,14 +115,7 @@
       </ul>
     </section>
 
-    <!-- Instagram Feed Grid -->
-    <section class="instagram-section">
-      <h2 class="section-title"><a href="https://www.instagram.com/bill_tribble/" target="_blank">Instagram</a></h2>
-      <p class="instagram-subtitle">More here: <a href="https://www.instagram.com/bill_tribble/" target="_blank">@bill_tribble</a></p>
-      <div id="instagramGrid" class="instagram-grid">
-        <!-- Dynmically loaded client side -->
-      </div>
-    </section>
+
   </div>
 </div>
 
@@ -139,31 +132,7 @@
     }
   });
 
-  // Fetch Instagram grid from cached json
-  fetch('{{base_url}}assets/instagram.json')
-    .then(response => response.json())
-    .then(posts => {
-      const grid = document.getElementById('instagramGrid');
-      if (!posts || posts.length === 0) {
-        grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
-        return;
-      }
-      grid.innerHTML = posts.map(post => `
-        <div class="instagram-card">
-          <a href="${post.permalink}" target="_blank" rel="noopener">
-            <img src="{{base_url}}${post.local_image_url}" alt="${post.caption ? post.caption.slice(0, 100).replace(/"/g, '&quot;') : 'Instagram Post'}" class="instagram-img">
-            <div class="instagram-card-overlay">
-              <span class="instagram-heart">&hearts;</span>
-            </div>
-          </a>
-        </div>
-      `).join('');
-    })
-    .catch(err => {
-      console.error('Failed to load Instagram posts:', err);
-      const grid = document.getElementById('instagramGrid');
-      grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
-    });
+
 
 
 </script>
