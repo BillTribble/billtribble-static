@@ -65,6 +65,20 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s, color 0.2s;
+}
+
+a:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
+}
+
 /* Site Layout Container */
 .site-container {
   display: flex;
@@ -144,6 +158,7 @@ body {
   transition: color 0.2s;
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .header-socials a:hover {
@@ -423,28 +438,6 @@ body {
   color: var(--color-on-background);
 }
 
-.highlight-desc a,
-.wp-block-paragraph a,
-.video-caption a,
-.instagram-subtitle a,
-.entry-content a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color 0.2s, color 0.2s;
-}
-
-.highlight-desc a:hover,
-.wp-block-paragraph a:hover,
-.video-caption a:hover,
-.instagram-subtitle a:hover,
-.entry-content a:hover {
-  color: var(--color-primary);
-  text-decoration-color: var(--color-primary);
-}
-
 .read-more-link a, .back-to-archive {
   font-weight: 700;
   color: var(--color-primary);
@@ -510,6 +503,10 @@ body {
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 16px;
+}
+
+.instagram-card a {
+  text-decoration: none;
 }
 
 .instagram-img {
