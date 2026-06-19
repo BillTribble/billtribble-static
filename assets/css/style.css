@@ -835,6 +835,10 @@ a:hover {
   .video-content-container {
     margin: 0 auto;
   }
+
+  .video-caption {
+    text-align: center;
+  }
   
   .site-header {
     padding: 16px 20px;
@@ -884,7 +888,7 @@ a:hover {
   line-height: var(--md-sys-typescale-body-small-line-height);
   color: var(--color-on-surface-variant);
   margin-top: 12px;
-  text-align: center;
+  text-align: left;
 }
 
 .instagram-subtitle {
