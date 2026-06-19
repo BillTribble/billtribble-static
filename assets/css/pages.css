@@ -194,8 +194,8 @@
   color: var(--color-on-background);
 }
 
-/* Previous Adventures Section */
-.adventures-section {
+/* Gigs Section */
+.gigs-section {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -204,7 +204,7 @@
   margin: 0 auto;
 }
 
-.adventures-list {
+.gigs-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -212,7 +212,7 @@
   padding-left: 20px;
 }
 
-.adventures-list li {
+.gigs-list li {
   font-weight: normal;
 }
 
