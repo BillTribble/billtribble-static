@@ -104,15 +104,9 @@
     <div class="video-column">
       <div class="video-content-container">
         <div class="video-wrapper border-radius-16">
-          <video id="drumVideo" autoplay loop muted playsinline>
-            <source src="./assets/video/me-drum-edit-2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <video id="drumVideo" autoplay loop muted playsinline src="./assets/video/me-drum-edit-2.mov"></video>
           <div class="video-overlay">
-            <button id="unmuteButton" class="unmute-toggle">
-              <span class="video-control-icon">🔇</span>
-              <span class="video-control-label">Unmute video</span>
-            </button>
+            <button id="unmuteButton" class="unmute-toggle">Unmute video 🔈</button>
           </div>
         </div>
         <p class="video-caption">Supporting an amazing set by <a href="https://soundcloud.com/osarasound" target="_blank" rel="noopener">Osara</a>.</p>
@@ -176,30 +170,57 @@
       </ul>
     </section>
 
+    <!-- Instagram Feed Grid -->
+    <section class="instagram-section">
+      <h2 class="section-title"><a href="https://www.instagram.com/bill_tribble/" target="_blank">Instagram</a></h2>
+      <p class="instagram-subtitle">More here: <a href="https://www.instagram.com/bill_tribble/" target="_blank">@bill_tribble</a></p>
+      <div id="instagramGrid" class="instagram-grid">
+        <!-- Dynmically loaded client side -->
+      </div>
+    </section>
 
   </div>
 </div>
 
 <script>
   // Video Unmute Script
-  const heroVideo = document.getElementById('drumVideo');
-  const unmuteBtn = document.getElementById('unmuteButton');
-  if (heroVideo && unmuteBtn) {
-    const unmuteIcon = unmuteBtn.querySelector('.video-control-icon');
-    const unmuteLabel = unmuteBtn.querySelector('.video-control-label');
+  document.getElementById('unmuteButton').addEventListener('click', function() {
+    const video = document.getElementById('drumVideo');
+    if (video.muted) {
+      video.muted = false;
+      this.textContent = 'Mute video 🔇';
+    } else {
+      video.muted = true;
+      this.textContent = 'Unmute video 🔈';
+    }
+  });
 
-    unmuteBtn.addEventListener('click', () => {
-      if (heroVideo.muted) {
-        heroVideo.muted = false;
-        unmuteIcon.textContent = '🔊';
-        unmuteLabel.textContent = 'Mute video';
-      } else {
-        heroVideo.muted = true;
-        unmuteIcon.textContent = '🔇';
-        unmuteLabel.textContent = 'Unmute video';
+  // Fetch Instagram grid from cached json
+  fetch('./assets/instagram.json')
+    .then(response => response.json())
+    .then(posts => {
+      const grid = document.getElementById('instagramGrid');
+      if (!posts || posts.length === 0) {
+        grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
+        return;
       }
+      grid.innerHTML = posts.map(post => `
+        <div class="instagram-card">
+          <a href="${post.permalink}" target="_blank" rel="noopener">
+            <img src="./${post.local_image_url}" alt="${post.caption ? post.caption.slice(0, 100).replace(/"/g, '&quot;') : 'Instagram Post'}" class="instagram-img">
+            <div class="instagram-card-overlay">
+              <span class="instagram-heart">&hearts;</span>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    })
+    .catch(err => {
+      console.error('Failed to load Instagram posts:', err);
+      const grid = document.getElementById('instagramGrid');
+      grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
     });
-  }
+
 </script>
 
     </main>
