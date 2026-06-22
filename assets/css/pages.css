@@ -247,7 +247,7 @@
 
 .instagram-card {
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   border-radius: 16px;
 }
