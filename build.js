@@ -8,7 +8,7 @@ const POSTS_OUTPUT_DIR = path.join(__dirname, 'posts');
 
 // Proper nouns list to preserve capitalization in sentence case conversion
 const PROPER_NOUNS = new Set([
-  'japan', 'tokyo', 'vimeo', 'youtube', 'soundcloud', 'tiktok', 'samsara', 'looper',
+  'japan', 'tokyo', 'vimeo', 'youtube', 'soundcloud', 'tiktok', 'samsara', 'looper', 'spotify',
   'bill', 'tribble', 'ministry', 'sound', 'ecstatic', 'dance', 'uk', 'london', 'dj',
   'womb', 'ageha', 'bristol', 'devon', 'somerset', 'moebius', 'jean', 'giraud',
   'shakti', 'buddhists', 'siddhis', 'theravada', 'buddhist', 'daniel', 'ingram',
