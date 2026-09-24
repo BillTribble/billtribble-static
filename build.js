@@ -9,7 +9,7 @@ const POSTS_OUTPUT_DIR = path.join(__dirname, 'posts');
 // Proper nouns list to preserve capitalization in sentence case conversion
 const PROPER_NOUNS = new Set([
   'japan', 'tokyo', 'vimeo', 'youtube', 'soundcloud', 'tiktok', 'samsara', 'looper', 'spotify',
-  'bill', 'tribble', 'ministry', 'sound', 'ecstatic', 'dance', 'uk', 'london', 'dj',
+  'whatsapp', 'bill', 'tribble', 'ministry', 'sound', 'ecstatic', 'dance', 'uk', 'london', 'dj',
   'womb', 'ageha', 'bristol', 'devon', 'somerset', 'moebius', 'jean', 'giraud',
   'shakti', 'buddhists', 'siddhis', 'theravada', 'buddhist', 'daniel', 'ingram',
   'scriptures', 'lucifer', 'kenneth', 'anger', 'garage', 'hermétique', 'holy',
@@ -31,6 +31,7 @@ function toSentenceCase(str) {
       if (cleanWord === 'youtube') return 'YouTube';
       if (cleanWord === 'soundcloud') return 'SoundCloud';
       if (cleanWord === 'tiktok') return 'TikTok';
+      if (cleanWord === 'whatsapp') return 'WhatsApp';
       if (cleanWord === 'dj') return 'DJ';
       return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1);
     }
