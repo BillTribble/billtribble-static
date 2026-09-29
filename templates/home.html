@@ -13,6 +13,11 @@
         <img src="{{base_url}}assets/images/avatar.jpg" alt="Bill Tribble" class="profile-avatar">
       </div>
       <div class="divider"></div>
+      <!-- Upcoming gigs: rendered by JS and hidden entirely once every date has passed -->
+      <div class="upcoming-gigs-section" id="upcomingGigs" hidden>
+        <h2 class="section-title">Upcoming gigs</h2>
+        <div class="upcoming-gigs-list" id="upcomingGigsList"></div>
+      </div>
       <div class="links-section">
         <h2 class="section-title">Links</h2>
         <div class="links-buttons">
@@ -172,6 +177,66 @@
       const grid = document.getElementById('instagramGrid');
       grid.innerHTML = '<p class="no-posts">Follow on Instagram <a href="https://www.instagram.com/bill_tribble/">@bill_tribble</a></p>';
     });
+
+  // Upcoming gigs — add or remove gigs in this list.
+  // Each gig stays visible up to and including its date, then disappears.
+  const upcomingGigs = [
+    {
+      name: 'Ecstatic Dance Brighton — Shadow Rave',
+      date: '2026-10-16',
+      venue: 'Brighthelm Centre, Brighton',
+      url: 'https://dandelion.events/e/n0siq'
+    },
+    {
+      name: 'Emboday Fest 2026',
+      date: '2026-10-17',
+      venue: 'Eastway Baths, London',
+      url: 'https://dandelion.events/e/w8nbs'
+    },
+    {
+      name: 'Ecstatic Dance UK — Evening Sessions',
+      date: '2026-10-28',
+      venue: 'The Baths, Hackney, London',
+      url: 'https://www.eventbrite.co.uk/e/ecstatic-dance-uk-the-evening-sessions-tickets-116035050961'
+    },
+    {
+      name: 'Ecstatic Dance Wales — Opening Dance',
+      date: '2027-01-23',
+      venue: 'Ostreme Centre, Mumbles',
+      url: 'https://www.eventbrite.com/o/73090798033'
+    }
+  ];
+
+  (function renderUpcomingGigs() {
+    const section = document.getElementById('upcomingGigs');
+    const list = document.getElementById('upcomingGigsList');
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    const visibleGigs = upcomingGigs
+      .filter(gig => new Date(gig.date + 'T00:00:00') >= today)
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    if (visibleGigs.length === 0) {
+      return; // Every gig has happened — leave the section (and its title) hidden
+    }
+
+    list.innerHTML = visibleGigs.map(gig => {
+      const dateLabel = new Date(gig.date + 'T00:00:00')
+        .toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+      return `
+        <a href="${gig.url}" target="_blank" rel="noopener" class="gig-btn">
+          <svg class="gig-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/>
+          </svg>
+          <span class="gig-text">
+            <span class="gig-name">${gig.name}</span>
+            <span class="gig-meta">${dateLabel} · ${gig.venue}</span>
+          </span>
+        </a>`;
+    }).join('');
+    section.hidden = false;
+  })();
 
 </script>
 

@@ -66,6 +66,64 @@
   gap: 12px;
 }
 
+/* Upcoming gigs (profile column, above links) */
+.upcoming-gigs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.upcoming-gigs-section[hidden] {
+  display: none;
+}
+
+.upcoming-gigs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gig-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  border-radius: 100px; /* Pill shape, matching link buttons */
+  background-color: var(--color-custom-tonal-bg);
+  color: var(--color-custom-tonal-text);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.gig-btn:hover {
+  background-color: var(--color-custom-tonal-hover-bg);
+}
+
+.gig-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.gig-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.gig-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+}
+
+.gig-meta {
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+}
+
 /* Video Column / Right Column */
 .video-column {
   width: 100%;
