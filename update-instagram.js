@@ -77,12 +77,9 @@ async function run() {
       console.log(`Downloading image for post ${post.id}...`);
       try {
         await downloadImage(imgUrl, imgDest);
-        const normalizedCaption = (post.caption || '')
-          .replace(/\bSamsara Looper\b/gi, 'Sangha Looper')
-          .replace(/\bSamsara\b/g, 'Sangha');
         savedPosts.push({
           id: post.id,
-          caption: normalizedCaption,
+          caption: post.caption || '',
           permalink: post.permalink,
           media_type: post.media_type,
           local_image_url: `assets/images/instagram/${imgName}`,
