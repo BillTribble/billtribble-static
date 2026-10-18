@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const posts = require('./posts');
+const writing = require('./writing');
 
 const TEMPLATES_DIR = path.join(__dirname, 'templates');
 const OUTPUT_DIR = __dirname;
@@ -14,7 +15,8 @@ const PROPER_NOUNS = new Set([
   'shakti', 'buddhists', 'siddhis', 'theravada', 'buddhist', 'daniel', 'ingram',
   'scriptures', 'lucifer', 'kenneth', 'anger', 'garage', 'hermétique', 'holy',
   'portal', 'records', 'tpj', 'theau', 'badrico', 'million', 'movers',
-  'crystal', 'temple', 'guides', 'forever', 'nihon', 'actual', 'vibes'
+  'crystal', 'temple', 'guides', 'forever', 'nihon', 'actual', 'vibes',
+  'ux', 'hopin', 'unmind', 'google', 'adobe', 'canon', 'endlesss', 'deepmind', 'im'
 ]);
 
 function toSentenceCase(str) {
@@ -33,6 +35,9 @@ function toSentenceCase(str) {
       if (cleanWord === 'tiktok') return 'TikTok';
       if (cleanWord === 'whatsapp') return 'WhatsApp';
       if (cleanWord === 'dj') return 'DJ';
+      if (cleanWord === 'ux') return 'UX';
+      if (cleanWord === 'ai') return 'AI';
+      if (cleanWord === 'im') return "I'm";
       return cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1);
     }
     if (index === 0) {
@@ -156,6 +161,35 @@ function build() {
   fs.writeFileSync(path.join(OUTPUT_DIR, 'actualvibes.html'), actualvibesHtml);
   console.log('Compiled: actualvibes.html');
 
+  // 5. Compile Design & Portfolio Page
+  const findFeaturedImage = slug => {
+    const dir = path.join(__dirname, 'assets', 'images', 'writing', slug);
+    if (!fs.existsSync(dir)) return null;
+    const candidate = fs.readdirSync(dir).find(f => f.startsWith('img-1.'));
+    return candidate ? `assets/images/writing/${slug}/${candidate}` : null;
+  };
+  const writingLoopHtml = writing.map(post => {
+    const img = findFeaturedImage(post.slug);
+    const featuredImageHtml = img
+      ? `<a class="post-featured-image-link" href="./posts/${post.slug}.html">
+           <img src="${img}" class="post-featured-image" alt="${post.title}" />
+         </a>`
+      : '';
+    return `
+      <div class="post-item">
+        <h2 class="entry-title"><a href="./posts/${post.slug}.html">${toSentenceCase(post.title)}</a></h2>
+        ${featuredImageHtml}
+        <p>${post.excerpt}</p>
+      </div>
+    `;
+  }).join('\n');
+
+  const designHtml = compilePage('design', 'Designer & creative technologist', 'Design, writing and creative technology projects by Bill Tribble.', {
+    '{{writing_loop}}': writingLoopHtml
+  });
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'design.html'), designHtml);
+  console.log('Compiled: design.html');
+
   // 6. Compile Individual Post Pages
   ensureDirectoryExistence(POSTS_OUTPUT_DIR);
   posts.forEach(post => {
@@ -166,6 +200,19 @@ function build() {
     }, true);
     fs.writeFileSync(path.join(POSTS_OUTPUT_DIR, `${post.slug}.html`), postHtml);
     console.log(`Compiled: posts/${post.slug}.html`);
+  });
+
+  // 7. Compile Writing Post Pages
+  writing.forEach(post => {
+    let postHtml = compilePage('writing-post', post.title, `${post.title} – writing by Bill Tribble`, {
+      '{{post_title}}': toSentenceCase(post.title),
+      '{{post_date}}': post.date || '<!-- no date -->',
+      '{{post_content}}': post.content
+    }, true);
+    // Strip the empty post-meta block when the writing post has no date
+    postHtml = postHtml.replace(/<div class="post-meta">\s*(?:<span class="post-date">)?\s*<!-- no date -->\s*(?:<\/span>)?\s*<\/div>\s*/g, '');
+    fs.writeFileSync(path.join(POSTS_OUTPUT_DIR, `${post.slug}.html`), postHtml);
+    console.log(`Compiled: posts/${post.slug}.html (writing)`);
   });
 
   console.log('Build completed successfully!');
