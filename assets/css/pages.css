@@ -729,6 +729,13 @@
   font-weight: 700;
 }
 
+/* Secondary intro line: quieter and smaller than the lede above it */
+.design-page .entry-content > p.design-secondary {
+  font-size: 16px;
+  line-height: 24px;
+  opacity: 0.85;
+}
+
 /* Company logos under the photo: current employer prominent on its own row,
    past employers smaller below. DeepMind sized to match the combined width
    of the Adobe + Canon row (76 + 24 gap + 71 = 171px) rather than a fixed
@@ -807,6 +814,14 @@
     width: 240px;
     height: 240px;
     order: 0;
+    /* Stacked layout: separate the logo block from the buttons below */
+    margin: 0 auto 40px;
+  }
+
+  .design-columns .avatar-container .design-logos {
+    margin-top: 24px;
+    margin-bottom: 0;
+    padding-bottom: 16px;
   }
 
   .design-writing-grid {
