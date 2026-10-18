@@ -671,3 +671,138 @@
     order: -1; /* Place progress bar on top on mobile */
   }
 }
+
+/* Design & portfolio page — matches the old btribble.com layout */
+.design-columns {
+  display: grid;
+  grid-template-columns: 1fr 341px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Portrait photo on the right, like the old site */
+.design-columns .avatar-container {
+  width: 341px;
+  height: 341px;
+  order: 2;
+}
+
+/* Title & body copy match the old btribble.com intro format:
+   h1 "Hi I'm Bill." — Inter 32px w800; paragraphs 20px/33px */
+.design-page .entry-title {
+  font-family: var(--font-primary) !important;
+  font-weight: 800 !important;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: normal;
+  margin: 42px 0 14px;
+}
+
+.design-page .entry-content {
+  font-size: 20px;
+  line-height: 33px;
+}
+
+.design-page .entry-content > p {
+  font-size: 20px;
+  line-height: 33px;
+  margin-top: 30px;
+}
+
+/* Intro lede: fluid sizing + bolded role, copied from old btribble.com */
+.design-page .entry-content > p.design-lede {
+  font-size: clamp(17.371px, 1.086rem + ((1vw - 3.2px) * 0.752), 27px);
+  line-height: 1.3;
+  margin-top: 30px;
+}
+
+.design-page .entry-content > p.design-lede strong {
+  font-weight: 700;
+}
+
+/* Company logos under the photo: current employer prominent on its own row,
+   past employers smaller below (DeepMind / Adobe + Canon) */
+.design-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.design-logos .logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.design-logos .logo-row-current img {
+  height: 44px;
+  width: auto;
+  opacity: 0.95;
+}
+
+.design-logos .logo-row-past img {
+  height: 20px;
+  width: auto;
+  opacity: 0.75;
+}
+
+/* Buttons tile like the homepage's narrow link column, not full-width */
+.design-page .links-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+/* Writing cards: 2-up grid with fixed-height cover images, like the old site */
+.design-page .highlights-section {
+  gap: 48px;
+}
+
+.design-page .highlights-section .post-item {
+  max-width: none;
+}
+
+.design-writing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 40px;
+}
+
+.design-writing-grid .post-item .post-featured-image-link {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.design-writing-grid .post-item .post-featured-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .design-columns {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .design-columns .avatar-container {
+    width: 240px;
+    height: 240px;
+    order: 0;
+  }
+
+  .design-writing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .design-page .links-buttons {
+    grid-template-columns: 1fr;
+  }
+}
