@@ -238,6 +238,13 @@
   border-radius: 16px;
 }
 
+/* Icon imgs in buttons aren't photos: give them a deliberate circular
+   treatment instead of the photo radius. Marks that don't fill their
+   viewBox (e.g. a scaled LinkedIn logo) sit fully inside the circle. */
+.entry-content .btn-icon {
+  border-radius: 50%;
+}
+
 .highlight-desc, .wp-block-paragraph {
   font-size: var(--md-sys-typescale-body-large-size);
   line-height: var(--md-sys-typescale-body-large-line-height);
