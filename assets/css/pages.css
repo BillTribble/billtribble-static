@@ -766,9 +766,11 @@
   gap: 12px;
 }
 
-/* Writing cards: 2-up grid with fixed-height cover images, like the old site */
+/* Writing cards: 2-up grid with fixed-height cover images, like the old site.
+   Tighten heading→card gap: the 96px archive-list gap leaves the single
+   writing card miles below the "Writing" section title. */
 .design-page .highlights-section {
-  gap: 48px;
+  gap: 24px;
 }
 
 .design-page .highlights-section .post-item {
