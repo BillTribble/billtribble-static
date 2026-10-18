@@ -730,7 +730,9 @@
 }
 
 /* Company logos under the photo: current employer prominent on its own row,
-   past employers smaller below (DeepMind / Adobe + Canon) */
+   past employers smaller below. DeepMind sized to match the combined width
+   of the Adobe + Canon row (76 + 24 gap + 71 = 171px) rather than a fixed
+   height, so the two rows read as one aligned block. */
 .design-logos {
   display: flex;
   flex-direction: column;
@@ -748,8 +750,8 @@
 }
 
 .design-logos .logo-row-current img {
-  height: 44px;
-  width: auto;
+  width: 171px;
+  height: auto;
   opacity: 0.95;
 }
 
