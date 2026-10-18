@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design principles in practice | Static Archive</title>
+  <style>
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  header.archive-header {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  header.archive-header h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem 0;
+    color: #111;
+  }
+  .archive-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .archive-meta a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  .archive-notice {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  article.content {
+    font-size: 1.05rem;
+    color: #222;
+  }
+  article.content h1, article.content h2, article.content h3, article.content h4 {
+    color: #111;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  article.content p {
+    margin: 1.25rem 0;
+  }
+  article.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+  }
+  article.content figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  article.content figcaption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  article.content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+  }
+  article.content ul, article.content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  article.content li {
+    margin-bottom: 0.5rem;
+  }
+  article.content a {
+    color: #0066cc;
+  }
+  article.content video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+  }
+  .back-index {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+  }
+  .back-index a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .back-index a:hover {
+    text-decoration: underline;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="archive-header">
+      <h1>Design principles in practice</h1>
+      <p class="archive-meta">Published: 2021-06-11 &bull; Original: <a href="https://btribble.com/product-design-principles-in-practice/" target="_blank" rel="noopener noreferrer">https://btribble.com/product-design-principles-in-practice/</a></p>
+      <div class="archive-notice">Archived from https://btribble.com/product-design-principles-in-practice/ on 2026-10-18</div>
+    </header>
+    <article class="content">
+<p class="wp-block-paragraph">Designing complex products isn’t easy.</p><p class="wp-block-paragraph">As a junior designer, I made the mistake more than once of jumping straight into a design app and pushing pixels, without first considering the bigger picture.</p><p class="wp-block-paragraph">As I learned my craft working with large tech companies and small startups, I discovered six principles that now inform the work that I do—and which guide the efforts of the broader Hopin Design team.</p><p class="wp-block-paragraph">In this article, we explain these product design principles and and illustrate how they show up in the work we do at Hopin—specifically, through a redesign of our event setup dashboard that we completed in early 2021.</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="608" width="1030" decoding="async" src="images/2021-10-Overview.png" alt="" class="wp-image-2969"/><figcaption class="wp-element-caption"><em>Design for our event setup dashboard beta in January 2021</em></figcaption></figure><p class="wp-block-paragraph">‍</p><div class="wp-block-uagb-container uagb-block-898b03f2 alignfull uagb-is-root-container"><div class="uagb-container-inner-blocks-wrap"><h2 class="wp-block-heading">Design Impact</h2>
+
+<p class="wp-block-paragraph">There&#8217;s no point having design principles if they aren&#8217;t serving the user and the business.</p>
+
+<p class="wp-block-paragraph">My work drove a step change in usability for our platform, and was described by VP of Product &amp; Design <strong>David Aubespin</strong> as being a &#8220;key factor in driving $40.2 million worth of sales&#8221; in Q4 2020.</p>
+
+
+
+<div class="wp-block-uagb-counter uagb-block-9a0a9d99 wp-block-uagb-counter--number"><span class="wp-block-uagb-counter__icon"><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 160C366.3 160 352 145.7 352 128C352 110.3 366.3 96 384 96H544C561.7 96 576 110.3 576 128V288C576 305.7 561.7 320 544 320C526.3 320 512 305.7 512 288V205.3L342.6 374.6C330.1 387.1 309.9 387.1 297.4 374.6L191.1 269.3L54.63 406.6C42.13 419.1 21.87 419.1 9.372 406.6C-3.124 394.1-3.124 373.9 9.372 361.4L169.4 201.4C181.9 188.9 202.1 188.9 214.6 201.4L320 306.7L466.7 159.1L384 160z"></path></svg></span><div class="wp-block-uagb-counter__number"><span class="uagb-counter-block-prefix">$</span>40.2<span class="uagb-counter-block-suffix"> million</span></div><div class="wp-block-uagb-counter__title">Sales driven</div></div>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="497" width="1140" decoding="async" src="images/score-1.png" alt="" class="wp-image-5433"/><figcaption class="wp-element-caption"><em>Average scores from 0-10 collected via our feedback form</em></figcaption></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="497" width="1140" decoding="async" src="images/score2.png" alt="" class="wp-image-5434"/></figure></div></div><h2 class="wp-block-heading" id="6-design-principles-at-hopin"><strong>6 Design Principles at Hopin</strong></h2><ol class="wp-block-list"><li>Solve a real problem</li>
+
+<li>Consider the structure</li>
+
+<li>Collaborate for strength</li>
+
+<li>Design just enough</li>
+
+<li>Test your solutions</li>
+
+<li>Design is never done</li></ol><p class="wp-block-paragraph">As the market leader in&nbsp;<a href="https://hopin.com/features/product-overview">virtual</a>&nbsp;and&nbsp;<a href="https://hopin.com/solutions/hybrid">hybrid events</a>, Hopin has built its&nbsp;<a href="https://www.g2.com/products/hopin/features">reputation</a>&nbsp;on stellar user experience.</p><p class="wp-block-paragraph">Our event product has two sides—one for event organizers, the other for attendees.</p><p class="wp-block-paragraph">Since releasing the first version of our event platform in 2019, we have listened to our customers and evolved our products to ensure that they meet the specific and changing needs of our audience.</p><p class="wp-block-paragraph">Here&#8217;s how:</p><h3 class="wp-block-heading" id="1-solve-a-real-problem"><strong>1. Solve a real problem</strong></h3><p class="wp-block-paragraph">As digital product designers, job is to solve real business and user problems through design.</p><h4 class="wp-block-heading" id="in-practice"><strong>In practice</strong></h4><p class="wp-block-paragraph">When we began thinking about doing a&nbsp;<strong>major overhaul of our event setup interface in early 2021</strong>, we knew we’d have to get tactical about&nbsp;<em>which problems we would try to solve</em>. So we began by identifying the key problems our users reported. We spoke to:</p><ol class="wp-block-list"><li>Event organizers—both those who ran events every day, as well as those who were new to our platform</li>
+
+<li>Our Customer Success team</li>
+
+<li>Our Support team</li></ol><p class="wp-block-paragraph">We also dug into our chat help system to identify the kinds of problems that kept recurring. We categorized and filtered the feedback, to identify three key problems with our event product:</p><h5 class="wp-block-heading" id="key-problems"><strong>Key problems</strong></h5><ol class="wp-block-list"><li>“It’s hard to know where to start when setting up an event.”</li>
+
+<li>“How do I know when I’m done?”</li>
+
+<li>“I can’t find [that thing] that I need!”</li></ol><p class="wp-block-paragraph">Having identified the problems, we were now able to begin considering and developing solutions. We worked in two main teams — my team concentrated on the third problem, while an &#8220;onboarding&#8221; team focused on the first two.</p><h3 class="wp-block-heading" id="2-consider-the-structure"><strong>2. Consider the structure</strong></h3><p class="wp-block-paragraph">Design goes deep. When solving any complex problem, Jessie James Garrett’s&nbsp;<em>Elements of User Experience</em>&nbsp;is a useful touchstone. I consider what level I’m working on — and if it’s the right level to tackle the challenge I face.</p><figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="893" src="images/2021-06-2-JJG-elements.jpg" alt="" class="wp-image-5755" /><figcaption class="wp-element-caption"><em>5 planes of UX from Jesse James Garrett&#8217;s “Elements of User Experience”</em></figcaption></figure><h4 class="wp-block-heading" id="in-practice"><strong>In Practice</strong></h4><p class="wp-block-paragraph">As we listened to our event organizers and observed newcomers setting up events, it became obvious that we needed to dig deep into the structure to fix the fundamental problems.</p><p class="wp-block-paragraph">For business reasons, we had to move quick.</p><p class="wp-block-paragraph">Given a limited timeframe, we couldn’t reconsider the entire event creation strategy<em>&nbsp;</em>or scope—but by working our way up the stack, we determined we could&nbsp;<strong>rethink the structure of the navigation</strong>&nbsp;(i.e., the &#8220;information architecture&#8221;).</p><p class="wp-block-paragraph">Starting at this deeper, more fundamental level was a guarantee that our work would have more leverage and make more of a difference to the resulting user experience.&nbsp;</p><p class="wp-block-paragraph">One key piece of feedback we received was that pages were hard to find in our current menu. While the menu was divided into sections, it looked like a flat hierarchy.&nbsp;</p><p class="wp-block-paragraph">So our first task was to create a better way to categorize menu items and consider better ways we could lay these out.</p><p class="wp-block-paragraph">We began this process with a series of short sessions with the Design team, Customer Success, and Support — to make sure that we had a logical and consistent structure for our navigation.&nbsp;</p><p class="wp-block-paragraph">Working at an abstract level, we were able to iterate fast and build detail in our designs—without getting bogged down by layout ideas.</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="316" width="1030" decoding="async" src="images/2-nav-structure.png" alt="" class="wp-image-2959"/><figcaption class="wp-element-caption"><em>Navigation hierarchy iterations</em></figcaption></figure><p class="wp-block-paragraph">Once we had a structure<em>&nbsp;</em>in place, we then&nbsp;<strong>reviewed the skeleton</strong><em>.&nbsp;</em><strong><em>‍</em></strong>How could we create a more consistent and clear experience at this level?&nbsp;</p><p class="wp-block-paragraph">We looked at competitors and comparators, including some niche products that only a few of us knew. Drawing on a wide range of influences gave us a competitive advantage, because we needed a diversity of ideas for inspiration.</p><figure class="wp-block-image size-large is-resized"><img data-recalc-dims="1" height="830" width="1030" decoding="async" src="images/nav-sketch.jpg" alt="" class="wp-image-2972" style="width:515px;height:415px"/><figcaption class="wp-element-caption"><em>An early sketch from an ideation workshop with the Product team</em></figcaption></figure><p class="wp-block-paragraph">Finally, we looked at what many people think of when they hear &#8220;design&#8221; — the surface level of the&nbsp;<strong>interface</strong>.&nbsp;</p><p class="wp-block-paragraph">We finessed details of typography and iconography, gave everything a visual polish, made sure our components were consistent with our wider design system, and checked color accessibility across all areas.</p><figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="730" height="395" src="images/old-nav-anim.2021-02-05-14_28_50.gif" alt="" class="wp-image-2973" /></figure><h3 class="wp-block-heading" id="3-collaborate-for-strength"><strong>3. Collaborate for strength</strong></h3><p class="wp-block-paragraph">Design is seductive. It’s easy to get distracted by the surface layer of shiny interfaces, smooth animations, light, and color.&nbsp;</p><p class="wp-block-paragraph">Indeed, as a designer working on digital products, it’s easy to silo yourself in an ivory tower. However, it is essential to remember that your work is part of something larger.</p><p class="wp-block-paragraph">Your design always exists as part of a larger ecosystem—and your designs can always be improved.</p><p class="wp-block-paragraph">As much as I may think my design solutions are great, I know from many years of experience that running them by other designers will always make them stronger.&nbsp;</p><p class="wp-block-paragraph">Moreover, this process of collaboration, and the learning that emerges, makes a design team stronger — producing better results throughout an entire product.</p><h3 class="wp-block-heading" id="4-design-just-enough"><strong>4. Design just enough</strong></h3><p class="wp-block-paragraph">It’s essential to keep in mind that the designs you work on every day are essentially just digital trash. They will be discarded once the real thing — the actual product—is in use. The designs are mere blueprints.</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="447" width="1030" decoding="async" src="images/prototype-vs-product.jpg" alt="" class="wp-image-2974"/><figcaption class="wp-element-caption"><em>In the end, the product is what counts</em></figcaption></figure><h4 class="wp-block-heading" id="in-practice"><strong>In practice</strong></h4><p class="wp-block-paragraph">While designing solutions for the navigation and structure, we designed just enough to test the idea.&nbsp;</p><p class="wp-block-paragraph">After our pivot to an accordion layout, we built a prototype of just the first few dashboard areas to get a feel for the interaction. Did it make sense with the first few areas? Was this enough to indicate it would work elsewhere?&nbsp;</p><p class="wp-block-paragraph">With these basic requirements satisfied, we were able to comfortably discard our prototype and start building the real thing.</p><h3 class="wp-block-heading" id="5-test-your-solutions"><strong>5. Test your solutions</strong></h3><p class="wp-block-paragraph">A key principle in software development: Success is what happens when you’ve failed every other way.&nbsp;</p><p class="wp-block-paragraph">You will always fail the first few times you make anything new — so choose where, and make it quick.&nbsp;</p><p class="wp-block-paragraph">Learn fast, fix the problems, and move on. (One example from real-world products: WD-40 was the 40th attempt at making a water displacer.)</p><h4 class="wp-block-heading" id="in-practice"><strong>In Practice</strong></h4><p class="wp-block-paragraph">We needed to learn quickly what worked and what didn’t.&nbsp;</p><p class="wp-block-paragraph">Working with our researcher, we created a quick information architecture test . How would our current flat hierarchy perform against one that was divided into structured areas?&nbsp;</p><p class="wp-block-paragraph">The results were surprising and amusing. While &#8220;time on task&#8221; was roughly the same,&nbsp;<strong>48%</strong>&nbsp;of our participants completed the test of the current flat hierarchy format, compared to&nbsp;<strong>86%</strong>&nbsp;of those asked to find items in our new, structured list format.</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="501" width="1030" decoding="async" src="images/5-results.png" alt="" class="wp-image-2963"/><figcaption class="wp-element-caption"><em>Flat hierarchy vs. structured test. In the flat hierarchy test, 52% of users dropped out due to frustration.</em></figcaption></figure><p class="wp-block-paragraph">This gave us confidence that we were on the right track. So we built out a detailed prototype of the entire dashboard, so we could test the interaction model and layout. Would it make sense in practice?</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="514" width="1030" decoding="async" src="images/nav-design-iterations.png" alt="" class="wp-image-2968"/><figcaption class="wp-element-caption"><em>Iterations on navigation. Working in Figma, we were able to rapidly prototype and test these ideas before development</em></figcaption></figure><p class="wp-block-paragraph">The feedback was fantastic . Users loved the look and feel of the prototype. Everything felt fast and better structured.&nbsp;</p><p class="wp-block-paragraph">However, in practice we soon ran into the key problem mentioned in part 2: Your designs are not the product.&nbsp;</p><p class="wp-block-paragraph">Our prototype whipped through pages at speed, delivering an instant response as users navigated.&nbsp;Unfortunately, in practice, we were unable to deliver the same speed in the actual product.</p><p class="wp-block-paragraph">When we put a coded prototype out as a beta for testing, we added a feedback form. A common theme quickly emerged : It felt too slow, as the navigation model required a page refresh each time the user went &#8220;back&#8221; to home.</p><p class="wp-block-paragraph">We needed a quick pivot to solve this problem — and, fortunately, through our collaborative process and exposure to many ideas, we had one ready. Which brings me to the 6th principle.</p><h3 class="wp-block-heading" id="6-design-is-never-done"><strong>6. Design is never done</strong></h3><p class="wp-block-paragraph">To paraphrase<a href="https://quoteinvestigator.com/2019/03/01/abandon/">&nbsp;Paul Valéry</a>: “Design is never finished, only abandoned”.</p><h4 class="wp-block-heading" id="in-practice"><strong>In Practice</strong></h4><p class="wp-block-paragraph">Once we had our new layout available in the actual working product — we really started to learn how effective our solution was. Did it solve our user problems? How could we improve it?</p><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="601" width="1030" decoding="async" src="images/accordion-proto.gif" alt="" class="wp-image-2975"/><figcaption class="wp-element-caption"><em>Figma prototype used to fine-tune the accordion menu interaction</em></figcaption></figure><p class="wp-block-paragraph">Our quick pivot to an accordion model solved the problem of speed. A page refresh was now only required when selecting a menu item. Our users loved the new layout, the clarity of the tables, and the overall structure.&nbsp;</p><figure class="wp-block-pullquote"><blockquote><p>Design is really never done, but this constant process of improvement is what makes good products great.</p></blockquote></figure><p class="wp-block-paragraph">By applying these design principles to our work, we are able to work methodically and maintain a consistent level of quality at scale.</p><p class="wp-block-paragraph">As a diverse and global team, through close collaboration, we are able to create designs that are better than any one of us could create alone.</p><p class="wp-block-paragraph">Ultimately, the test of our work is whether it delivers real value to our customers. Design does not exist in a vacuum. Its efficacy and quality is only discernible when it is out in world and our users begin interacting with it.</p><div class="wp-block-uagb-container uagb-block-963684d9 alignfull uagb-is-root-container"><div class="uagb-container-inner-blocks-wrap"><h2 class="wp-block-heading">Impact</h2>
+
+<p class="wp-block-paragraph">There&#8217;s no point having design principles if they aren&#8217;t serving the user and the business.</p>
+
+<p class="wp-block-paragraph">My work drove a step change in usability for our platform, and was described by VP of Product &amp; Design <strong>David Aubespin</strong> as being a &#8220;key factor in driving $4.2 million worth of sales&#8221; in Q4 2020.</p>
+
+
+
+<div class="wp-block-uagb-counter uagb-block-ce2dbd7c wp-block-uagb-counter--number"><span class="wp-block-uagb-counter__icon"><svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 160C366.3 160 352 145.7 352 128C352 110.3 366.3 96 384 96H544C561.7 96 576 110.3 576 128V288C576 305.7 561.7 320 544 320C526.3 320 512 305.7 512 288V205.3L342.6 374.6C330.1 387.1 309.9 387.1 297.4 374.6L191.1 269.3L54.63 406.6C42.13 419.1 21.87 419.1 9.372 406.6C-3.124 394.1-3.124 373.9 9.372 361.4L169.4 201.4C181.9 188.9 202.1 188.9 214.6 201.4L320 306.7L466.7 159.1L384 160z"></path></svg></span><div class="wp-block-uagb-counter__number"><span class="uagb-counter-block-prefix">$</span>4.2<span class="uagb-counter-block-suffix"> million</span></div><div class="wp-block-uagb-counter__title">Sales driven</div></div>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="497" width="1140" decoding="async" src="images/score-1.png" alt="" class="wp-image-5433"/><figcaption class="wp-element-caption"><em>Average scores from 0-10 collected via our feedback form</em></figcaption></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="497" width="1140" decoding="async" src="images/score2.png" alt="" class="wp-image-5434"/></figure></div></div><div class="wp-block-uagb-container uagb-block-7c0b8f46 alignfull uagb-is-root-container"><div class="uagb-container-inner-blocks-wrap"><h2 class="wp-block-heading">Testimonials</h2>
+
+<div style="background-color:#f2f2f2;color:#32373c" class="wp-block-genesis-blocks-gb-testimonial left-aligned gb-has-avatar gb-font-size-18 gb-block-testimonial"><div class="gb-testimonial-text">&#8220;Bill has a clear ability to transmit complex ideas in brilliant, insightful ways. He provided a container for creative, innovative-thinking to thrive. Couple that with his superb humour, sense of fun and genuine concern for the growth of an individual and team, and it&#8217;s easy to see why he&#8217;s a top-notch design leader on every team.&#8221;</div><div class="gb-testimonial-info"><div class="gb-testimonial-avatar-wrap"><div class="gb-testimonial-image-wrap"><img data-recalc-dims="1" height="80" width="80" decoding="async" class="gb-testimonial-avatar" src="images/lauren-harris.jpg"/></div></div><h2 class="gb-testimonial-name" style="color:#32373c">Lauren Harris</h2><small class="gb-testimonial-title" style="color:#32373c">Lead product designer, Nike</small></div></div>
+
+<div style="background-color:#f2f2f2;color:#32373c" class="wp-block-genesis-blocks-gb-testimonial left-aligned gb-has-avatar gb-font-size-18 gb-block-testimonial"><div class="gb-testimonial-text">&#8220;I’ve never met a more focused and efficient UX designer.<br>I had the pleasure of working with Bill on projects across various media and devices. He helped us find the best patterns for compelling UI designs (mobile / desktop), improved our UX research approach, and delivered intuitive, data-driven prototypes.<br>Bill is an extremely passionate designer and a lovely colleague &#8211; a real team player, reliable with deadlines but always there for a friendly chat during a coffee break. Plus, he built his own hardware / software interface for his live electronic rock band!&#8221;</div><div class="gb-testimonial-info"><div class="gb-testimonial-avatar-wrap"><div class="gb-testimonial-image-wrap"><img data-recalc-dims="1" height="80" width="80" decoding="async" class="gb-testimonial-avatar" src="images/ilaria.jpg"/></div></div><h2 class="gb-testimonial-name" style="color:#32373c">Ilaria Gatti</h2><small class="gb-testimonial-title" style="color:#32373c">Head of product design, Doctify</small></div></div></div></div>
+    </article>
+    <div class="back-index">
+      <a href="index.html">&larr; Back to Legacy Backup Index</a>
+    </div>
+  </div>
+</body>
+</html>

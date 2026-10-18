@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a rocketship in flight | Static Archive</title>
+  <style>
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  header.archive-header {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  header.archive-header h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem 0;
+    color: #111;
+  }
+  .archive-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .archive-meta a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  .archive-notice {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  article.content {
+    font-size: 1.05rem;
+    color: #222;
+  }
+  article.content h1, article.content h2, article.content h3, article.content h4 {
+    color: #111;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  article.content p {
+    margin: 1.25rem 0;
+  }
+  article.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+  }
+  article.content figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  article.content figcaption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  article.content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+  }
+  article.content ul, article.content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  article.content li {
+    margin-bottom: 0.5rem;
+  }
+  article.content a {
+    color: #0066cc;
+  }
+  article.content video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+  }
+  .back-index {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+  }
+  .back-index a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .back-index a:hover {
+    text-decoration: underline;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="archive-header">
+      <h1>Building a rocketship in flight</h1>
+      <p class="archive-meta">Published: 2022-02-15 &bull; Original: <a href="https://btribble.com/designing-a-rocketship-in-flight/" target="_blank" rel="noopener noreferrer">https://btribble.com/designing-a-rocketship-in-flight/</a></p>
+      <div class="archive-notice">Archived from https://btribble.com/designing-a-rocketship-in-flight/ on 2026-10-18</div>
+    </header>
+    <article class="content">
+<div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-cc02e2aa wp-block-group-is-layout-constrained"><p class="wp-block-paragraph">Hopin has been a trip. </p>
+
+<p class="wp-block-paragraph">I joined as the second designer in July 2020, a few months into this strange pandemic which <em>still</em> hasn&#8217;t ended. I had been working as a contractor and trying to find the right permanent job for a while. I often worked with early stage startups and my first thought was: &#8220;Just another startup&#8221;. The team seemed nice though, and the product interesting. </p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p class="wp-block-paragraph">I couldn&#8217;t have known how explosive the growth was going to be.</p></blockquote>
+
+<p class="wp-block-paragraph">When I first spoke to Hopin, they had about 50 people on board. I was roughly the 70th hire. Within a year we had <em>700 people</em>, growing soon to over 1000. The sales team literally couldn&#8217;t keep up with enquiries to begin with. We had incredible market fit, and a great reputation to match. That intensity of growth led to many challenges &#8211; teams were formed and disbanded, and projects were started then discarded at speed. Despite all the chaos though we generally had a good time, and I enjoyed the work &#8211; even if it felt like I went from one &#8216;design emergency&#8217; to another at times. </p>
+
+<p class="wp-block-paragraph">These are my takeaways from 20 months on the rocket ship, along with some reflections on process and framework that made everything so much more manageable.</p>
+
+<h2 class="wp-block-heading" id="it-s-all-about-the-people">It&#8217;s all about the people</h2>
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-995f960e wp-block-columns-is-layout-flex"><div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%"><p class="wp-block-paragraph">It was incredibly exciting to help build the design team. I spent days talking to designers from around the world about their process and ambitions, and trying to understand if they were a match for what we needed. We went from two designers to a team of over thirty (including research) inside that first year. I&#8217;m so proud of the diverse, global team we built together, and what we were able to achieve in such a short space of time.</p></div>
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:50%"><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="1030" width="1030" decoding="async" src="images/team.png" alt="" class="wp-image-3780"/><figcaption class="wp-element-caption">Illustration credit: Streamline</figcaption></figure></div></div>
+
+<p class="wp-block-paragraph">I learnt so much from our team too! Designers from all over the world gave me new perspectives on the craft. I&#8217;m especially indebted to Matt Kay for his insights on interface design, Fiorella Rizzà for her guidance on UX Writing, and researchers Barbara Iranzo and Jacqualyn Mangels for their advice and support on research. To be honest, I could namecheck the whole team here &#8211; I so enjoyed our many deep conversations on design. (A shout out to all the team at the end).</p>
+
+<p class="wp-block-paragraph">I learnt an equal amount from our remarkable engineers and product managers. A shout out is due here to product managers Emily Mabin Sutton, Rodolphe Bouygues, and Jono van Deventer, product director Moustafa Khalil, and engineering manager James Clark &#8211; who had such valuable insights not only into the product development process but also just how they &#8216;managed upwards&#8217;, navigated complexity, and helped executives understand the work they were doing. I owe Rui Ramos and the whole team from agency Red Badger a special mention too &#8211; it was a pleasure to work with such a thoughtful, pragmatic, and user-centered team.</p></div><div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-58c8832e wp-block-group-is-layout-constrained"><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="757" width="1140" decoding="async" src="images/lego.jpeg" alt="" class="wp-image-3652"/><figcaption class="wp-element-caption">Don&#8217;t hang on! Image credit: Firstround Review</figcaption></figure></div><div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-cc02e2aa wp-block-group-is-layout-constrained"><h2 class="wp-block-heading" id="give-away-your-lego">Give away your Lego</h2>
+
+<p class="wp-block-paragraph">You might question Molly Graham&#8217;s ethics for choosing to work for Mark Zuckerberg, but you can&#8217;t fault her maxim explained in detail in her article <a href="https://review.firstround.com/give-away-your-legos-and-other-commandments-for-scaling-startups">Give Away Your Legos</a>. TL;DR &#8211; &#8220;Don&#8217;t get attached to what you&#8217;re working on&#8221; &#8211; there&#8217;s always more to do in a fast growing startup. Get used to change, get excited about the next problem, and cheerfully support whoever needs help when they start trying to solve the problems <em>you </em>were working on.</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="860" src="images/pexels-photo-196644.jpeg" alt="notebook beside the iphone on table" class="wp-image-3654" /><figcaption class="wp-element-caption">Photo by picjumbo.com</figcaption></figure></div><div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-cc02e2aa wp-block-group-is-layout-constrained"><h2 class="wp-block-heading" id="start-rough">Start rough</h2>
+
+<p class="wp-block-paragraph">Now &#8211; this is something any of my design students will have heard me banging on about forever. It&#8217;s almost a cliche in design &#8211; start rough, generate lots of ideas, throw most of them away. Iterate lots and fast at the start. Test your ideas early, and once you have ideas that resonate with others, refine them and continue testing till you get to &#8216;high fidelity&#8217; (or even better, working code). </p>
+
+<p class="wp-block-paragraph">Because Hopin was evolving so rapidly I got to see many different ways of managing projects. Projects that <em>began</em> with high-fidelity designs always had worse outcomes than those that started rough. Starting rough means: I had the opportunity to work with loose concepts and rough ideas, in early collaboration with engineers, product managers, customer success managers, and even actual &#8216;event organisers&#8217; (our customers in my area). When we worked like this, we were able to produce results that made sense to everyone, were feasible to build, and manageable in realistic chunks of work.</p>
+
+<p class="wp-block-paragraph">The projects that started &#8216;planned out&#8217; &#8211; whether specced out in a document or (believe it or not) actually wireframed by a Product Manager did not end well.</p>
+
+<h2 class="wp-block-heading" id="itamar-gilad-s-confidence-chart-is-a-work-of-genius">Itamar Gilad&#8217;s Confidence Chart is a work of genius</h2>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1000" height="676" src="images/be9a8-1cs2gqpb71moxqov7mw4yra.png" alt="" class="wp-image-3646" /><figcaption class="wp-element-caption">Image credit: Itamar Gilad</figcaption></figure>
+
+<p class="wp-block-paragraph">Giving a clear metric for <em>confidence</em> on any project is absolutely invaluable. <a href="https://itamargilad.com/the-tool-that-will-help-you-choose-better-product-ideas/">Gilad defines</a> these in such a clear and straightforward way. These definitions informed very straightforward, realistic conversations on where we were and where we needed to get to. Working with teams that were informed by this viewpoint gave us a totally different perspective, and leveraging this perspective gave us stellar results in terms of the user performance of new product features. Shout out to Rodolphe for introducing me to this.</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="523" width="1140" decoding="async" src="images/SueLockwood-SophiaVoychehovski.webp" alt="" class="wp-image-3777"/><figcaption class="wp-element-caption">Illustration by Sue Lockwood</figcaption></figure>
+
+<h2 class="wp-block-heading" id="prater-s-ooux-framework-needs-more-attention">Prater&#8217;s OOUX framework needs more attention</h2>
+
+<p class="wp-block-paragraph">I know I&#8217;ve sung Sofia Prater&#8217;s praises before, but damn this is such a transformative tool when dealing with complex systems. Not only does it give you a common language with engineers and product managers, it allows you to plan a system <em>before</em> you start thinking about the screens it will inhabit. I cannot stress enough what a lifesaver this is, and how many weeks of pain I saved by mapping things out before getting into screen design. Go and read <a href="https://alistapart.com/article/object-oriented-ux/">her introductory article</a> right after this!</p>
+
+<figure class="wp-block-image size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="893" src="images/2025-03-2-JJG-elements.jpg" alt="" class="wp-image-5904" /><figcaption class="wp-element-caption">JJG&#8217;s Elements of user experience</figcaption></figure>
+
+<h2 class="wp-block-heading" id="jesse-james-garrett-still-matters">Jesse James Garrett still matters</h2>
+
+<p class="wp-block-paragraph">Building on the last two points &#8211; Garrett&#8217;s &#8220;<a href="http://www.jjg.net/elements/">Elements of User Experience</a>&#8221; is an incredibly useful framework. It really helps frame the space for people who don&#8217;t understand the role of a digital product designer. Being able to point to this chart and say &#8220;OK &#8211; let&#8217;s talk about the strategy behind what we&#8217;re trying to achieve: Down here at the foundation of the product&#8221; gave whole teams a shared framework for understanding. It also helped build a common language with team-mates who saw design as only the &#8216;visual layer&#8217; &#8211; allowing me to explain what I was trying to achieve by talking about the architecture of the product <em>before</em> the shapes on screen.</p></div><div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-cc02e2aa wp-block-group-is-layout-constrained"><figure class="wp-block-image size-large"><img data-recalc-dims="1" height="760" width="1140" decoding="async" src="images/photo-1519389950473-47ba0277781c.jpeg" alt="" class="wp-image-3667"/><figcaption class="wp-element-caption">Image credit: Marvin Meyer</figcaption></figure>
+
+<h2 class="wp-block-heading" id="it-s-all-about-the-team-process">It&#8217;s all about the team process</h2>
+
+<p class="wp-block-paragraph">It doesn&#8217;t matter how great a designer you are in terms of your craft skills. At the end of the day, the only thing that counts is the product. Your &#8216;designs&#8217; are just transitory artefacts of a process &#8211; to be discarded once the product is built. Your &#8216;designs&#8217; are obsolete as soon as an engineer starts building them &#8211; and your concepts encounter the <em>hard limits of reality</em>.</p>
+
+<p class="wp-block-paragraph">Getting good results in digital product is all about the process &#8211; and not just the &#8216;design&#8217; process. It&#8217;s about the way your <em>whole team</em> works together. Good news: This is something that can be designed and iterated on too.</p>
+
+<p class="wp-block-paragraph">In recent work on a core product we built regular cycles of review and exchange into our team process. They weren&#8217;t big changes, but <em>formalising </em> these &#8216;ad-hoc&#8217; processes transformed our ability to deliver a high quality product. This took three main forms:</p>
+
+<ol class="wp-block-list"><li><p><strong>A &#8216;snagging&#8217; document (later named &#8216;design QA&#8217;)</strong><br>Initially using just a simple Google Sheet, the whole team (and others outside of it) where empowered to report visual or experience bugs of any kind in the document, adding screenshots or videos where appropriate.<span style="background-color: transparent; color: var(--color); font-family: var(--fontFamily); font-size: var(--fontSize); font-style: var(--fontStyle, inherit); font-weight: var(--fontWeight); letter-spacing: var(--letterSpacing); text-transform: var(--textTransform);"> </span></p></li>
+
+<li><p><strong>A weekly &#8216;snags review&#8217;</strong><br>Myself, the Engineering Manager and the Product Manager then triaged this list every week &#8211; checking what had been fixed already, what we could safely ignore, and what really needed fixing (and moving into JIRA).</p></li>
+
+<li><p><strong>A weekly &#8216;product demo&#8217;</strong><br>As an internal team, separate from any &#8216;review&#8217; with company leadership, engineers were given the chance to demo anything new they had working in code. This gave the whole team a chance to see what was working and what wasn&#8217;t, and give suggestions for improvement <em>while that engineer was still working on the feature.</em> This meant we could quickly squash bugs and improve usability outside of more formal review cycles.</p></li>
+
+<li><p><strong>Fortnightly team retrospectives.</strong><br>These sessions gave us a chance to review what was working and what wasn&#8217;t, and give praise to team-members for anything good they were doing. Not only were they generally good for morale, they also helped us course-correct on the initiatives already mentioned.</p></li></ol>
+
+<h2 class="wp-block-heading" id="design-is-two-thirds-education">Design is two-thirds education</h2>
+
+<figure class="wp-block-image size-full is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="825" src="images/jason-goodman-1.jpeg" alt="" class="wp-image-5960" style="width:760px;height:506px" /><figcaption class="wp-element-caption">Image credit: Jason Goodman</figcaption></figure>
+
+<p class="wp-block-paragraph">Building on the last point:</p>
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p class="wp-block-paragraph">Design is a specialised skill that not many people have access to.</p></blockquote>
+
+<p class="wp-block-paragraph">To really collaborate effectively as a designer, you have to be able to explain what you do, what you&#8217;re trying to achieve, and how you plan to get there. Now, this is true for <em>any</em> kind of collaboration &#8211; I&#8217;m thinking here of how the best product managers and engineers are excellent at explaining their craft to others. However, this is <em>especially </em>true for design, given that our craft goes right to the roots of the creative process. </p>
+
+<p class="wp-block-paragraph">Only by helping others understand what we do, and what we need to succeed can we really be effective in our roles. Moreover, we can use our tools as designers to help build processes that leverage the diverse abilities and perspectives of all team members. </p>
+
+<p class="wp-block-paragraph">This is perhaps where the true strength of capital &#8216;D&#8217; Design lies. Not just as a <em>craft</em> (like &#8216;digital product design&#8217;) &#8211; but as a basic <em>human function</em>. Our collective  ability to think ahead, to think in terms of <em>systems</em> and not just individual <em>components</em>. Our ability to be comfortable with uncertainty, and to help bring others along for the ride. </p>
+
+<h2 class="wp-block-heading" id="meditation-is-a-life-saver">Meditation is a life saver</h2>
+
+<figure class="wp-block-image size-large is-resized"><img data-recalc-dims="1" height="757" width="1140" decoding="async" src="images/fabrizio-chiagano-rDwIXsgb2LY-unsplash.jpg" alt="" class="wp-image-3689" style="width:758px;height:503px"/><figcaption class="wp-element-caption">Image credit: Fabrizio Chiagano</figcaption></figure>
+
+<p class="wp-block-paragraph">A final note: I didn&#8217;t always manage to keep my practice up, but damn did I notice when I slipped! Finding time to step away from the screen and contemplate was essential to keeping my sanity. </p>
+
+<p class="wp-block-paragraph">Teaching meditation also helped me learn &#8211; I was given the honour of leading a few short sessions with the entire company (thanks, Nina Frank). Having over a thousand people watching definitely helped focus the mind! I was humbled by the hundreds of messages I received from those who found it useful. Shout out to whoever coined #chillwithbill 🙏.</p>
+
+<h2 class="wp-block-heading" id="in-conclusion">In conclusion</h2>
+
+<p class="wp-block-paragraph">I&#8217;m honoured to have been a small part of startup history. Hopin was one of the fastest growing companies of all time &#8211; it was wild to witness and build on the explosive growth. It&#8217;s a shame that they had to make layoffs, but I believe they now have a solid core team to build the next, &#8216;hybrid&#8217; phase of the company. I wish them all the best of success, and I&#8217;m excited to see what they do next. </p>
+
+<div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-6ff4ee9" id="credits" data-block-id="6ff4ee9"><div class="stk-block-heading__top-line"></div><h2 class="stk-block-heading__text stk-block-heading--use-theme-margins">Credits</h2></div>
+
+<p class="wp-block-paragraph">A final thanks to everyone in the <strong>design team at Hopin that I haven&#8217;t mentioned already</strong> &#8211; it was such a pleasure working with you. </p>
+
+<p class="wp-block-paragraph">I&#8217;m listing names from memory so apologies to anyone I forgot! Alex Roitch, Andrew Cobley, Brian Greene, Bulent Shik, Darci Dutcher, Dora Türkoğlu, Emma Hardman, Federica–Sophie Sissa, Filippo Gin, Halyna Hlynska, Helen Stead, Ivan Nevrela, Jagoda Pietrzak, Jason Ring, Javiera Craig, James Price, Joe Li, João Costa, Jon Atkins, Kah-Mun Liew, Kathryn Thomas Hastings, Luca Murgia, Masha Ignatova, Melissa Cliver, Noah Shrader, Peter Roessler, Raya Karova, Sasha Pronina, Vanessa Vilela, Yaprak Kaynar, Victor Samokhvalov</p>
+
+<p class="wp-block-paragraph"><strong>People outside the design team </strong>&#8211; Shout out to Adil Ali and Mike Stuart for joining me for the early meditation sessions and becoming such great friends and allies. Keep the music alive, Alex Dique! Alex Nita, Alena Taranova, Türerkan İnce, Matt Clough, Avipaul Bhandari, Ken Keel, Louise Strong, Violet Graham, Martin Doyle &#8211; thanks for the good times.</p>
+
+<p class="wp-block-paragraph">Special mention to Hazel Song for inviting me onboard!</p>
+
+<p class="wp-block-paragraph">Illustration credit: Bruxelles by Streamline.</p></div><div class="wp-block-uagb-container uagb-block-7c0b8f46 alignfull uagb-is-root-container"><div class="uagb-container-inner-blocks-wrap"><h2 class="wp-block-heading">Testimonials</h2>
+
+<div style="background-color:#f2f2f2;color:#32373c" class="wp-block-genesis-blocks-gb-testimonial left-aligned gb-font-size-18 gb-block-testimonial"><div class="gb-testimonial-text">&#8220;As a manager, Bill showed great empathy and an ability to give feedback in a clear and straightforward manner, which made it easy to apply. Bill’s ability to manage a large group, feedback effectively and his expert knowledge of the industry would make him an asset to any organization looking for a strong UX leader.&#8221;</div><div class="gb-testimonial-info"><h2 class="gb-testimonial-name" style="color:#32373c">Genevieve Smith</h2><small class="gb-testimonial-title" style="color:#32373c">Lead product designer</small></div></div>
+
+<div style="background-color:#f2f2f2;color:#32373c" class="wp-block-genesis-blocks-gb-testimonial left-aligned gb-has-avatar gb-font-size-18 gb-block-testimonial"><div class="gb-testimonial-text">&#8220;Bill is real talent who brings together a number of skills that are rarely found together &#8211; thoughtful strategy, confident communication, and exceptional design. <br>His breadth and depth of knowledge combined with his ability to work with others allows him to elicit the very best out of his teammates to produce world-class products.&#8221;</div><div class="gb-testimonial-info"><div class="gb-testimonial-avatar-wrap"><div class="gb-testimonial-image-wrap"><img data-recalc-dims="1" height="80" width="80" decoding="async" class="gb-testimonial-avatar" src="images/steve-granshaw.jpg"/></div></div><h2 class="gb-testimonial-name" style="color:#32373c">Steve Granshaw</h2><small class="gb-testimonial-title" style="color:#32373c">Lead product designer</small></div></div></div></div>
+    </article>
+    <div class="back-index">
+      <a href="index.html">&larr; Back to Legacy Backup Index</a>
+    </div>
+  </div>
+</body>
+</html>

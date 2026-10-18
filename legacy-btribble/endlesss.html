@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Making music social again | Static Archive</title>
+  <style>
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  header.archive-header {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  header.archive-header h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem 0;
+    color: #111;
+  }
+  .archive-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .archive-meta a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  .archive-notice {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  article.content {
+    font-size: 1.05rem;
+    color: #222;
+  }
+  article.content h1, article.content h2, article.content h3, article.content h4 {
+    color: #111;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  article.content p {
+    margin: 1.25rem 0;
+  }
+  article.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+  }
+  article.content figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  article.content figcaption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  article.content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+  }
+  article.content ul, article.content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  article.content li {
+    margin-bottom: 0.5rem;
+  }
+  article.content a {
+    color: #0066cc;
+  }
+  article.content video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+  }
+  .back-index {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+  }
+  .back-index a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .back-index a:hover {
+    text-decoration: underline;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="archive-header">
+      <h1>Making music social again</h1>
+      <p class="archive-meta">Published: 2020-03-08 &bull; Original: <a href="https://btribble.com/endlesss/" target="_blank" rel="noopener noreferrer">https://btribble.com/endlesss/</a></p>
+      <div class="archive-notice">Archived from https://btribble.com/endlesss/ on 2026-10-18</div>
+    </header>
+    <article class="content">
+<p class="wp-block-paragraph">Endlesss is a startup with a bold aim: Make fun and collaboration the default for electronic music making. When I first spoke to them in mid-2018, they had a great-looking, powerful multiplayer instrument – that fit tons of features into a tiny screen. It was brilliant, but there were a few issues.</p><div class="wp-block-group is-layout-constrained wp-container-core-group-is-layout-17c634c7 wp-block-group-is-layout-constrained"><div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-995f960e wp-block-columns-is-layout-flex"><div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><figure class="wp-block-video"><video height="1334" style="aspect-ratio: 750 / 1334;" width="750" autoplay controls loop muted src="https://btribble.com/wp-content/uploads/2019/04/endlesss-alpha-screen-recording-7043.mp4"></video></figure></div>
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><h4 class="wp-block-heading">Challenges</h4>
+
+<ul class="wp-block-list"><li>New users found the interface confusing</li>
+
+<li>Hierarchy of information unclear</li>
+
+<li>Feature set incomplete</li>
+
+<li>No space to add new features</li></ul></div></div></div><h2 class="wp-block-heading">Key learnings</h2><ol class="wp-block-list"><li><strong>For complex workflows, hierarchy is king </strong>— Making the implicit structure of the app concrete in the interface made onboarding users way easier. I don’t think we have the best possible solution now, but we’re a good 50% closer, simply from re-organizing the interface to match the app structure.</li>
+
+<li><strong>Building on familiar patterns is amazingly useful </strong>— Once we found an interaction pattern that was familiar to most users, everything else flowed way easier. The ‘chat’ paradigm became our guiding force for all decisions we made, and helped simplify our design process.</li>
+
+<li><strong>Don’t hide controls</strong> — Anything that will add value to the user should be clearly visible. Features that are only revealed by swiping need to be clearly labelled, and highlighted during onboarding. Even then, users will miss them.&nbsp;<strong>Buttons over swipes or gestures!</strong></li>
+
+<li><strong>Sometimes, there’s no option but to hide the text </strong>— building complex apps on mobile is really challenging. 9 times out of 10 I recommend including a label with an icon, but for this particular interface, it just became too cluttered to have text labels everywhere. We have however gone for JUST text in one or two important instances, for example the ‘REMIX’ button — as you’ll see.</li></ol><h2 class="wp-block-heading">My role</h2><p class="wp-block-paragraph">I facilitated a series of workshops based on&nbsp;<a href="https://btribble.com/portfolio-item/design-sprint/?customize_changeset_uuid=cd70c735-6740-4d75-bf42-b9b394f942ed&amp;customize_autosaved=on&amp;customize_theme=enfold-child&amp;customize_messenger_channel=preview-0">Design Sprint</a>&nbsp;processes, and worked with the team to prioritise and build a roadmap to a Minimum Viable Product (MVP). Then in close collaboration with the team I prototyped and tested a new vision for the product.</p><h5 class="wp-block-heading">Project Aims</h5><ul class="wp-block-list"><li>Clarify structure</li>
+
+<li>Build new navigation</li>
+
+<li>Add new features:<ul class="wp-block-list"><li>Groups</li>
+
+<li>Subscriptions</li>
+
+<li>Purchases</li></ul></li></ul><figure class="wp-block-image alignfull size-large"><img data-recalc-dims="1" height="638" width="1030" decoding="async" src="images/product-demo.jpg" alt="" class="wp-image-1853"/><figcaption class="wp-element-caption">An early product demo for friends and investors</figcaption></figure><h2 class="wp-block-heading">Object Oriented UX</h2><p class="wp-block-paragraph">A key process I used was Sophia V Prater’s&nbsp;<a href="https://alistapart.com/article/object-oriented-ux">Object Oriented UX</a>&nbsp;Mapping (OOUX). By documenting all the key objects in our system, we were able to better focus our MVP, and highlight both potential challenges and opportunities to encourage our users to subscribe.</p><figure class="wp-block-image"><img decoding="async" src="images/OOUX.png" alt=""/><figcaption class="wp-element-caption">OOUX format</figcaption></figure><figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex"><figure class="wp-block-image size-large"><a href="images/OOUX-all.jpg"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="612" data-id="1858" src="images/OOUX-all.jpg" alt="" class="wp-image-1858" /></a><figcaption class="wp-element-caption">Full OOUX &#8211; feature wishlist</figcaption></figure>
+
+<figure class="wp-block-image size-large"><a href="images/OOUX-MVP.jpg"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="683" data-id="1906" src="images/OOUX-MVP.jpg" alt="" class="wp-image-1906" /></a><figcaption class="wp-element-caption">OOUX for MVP</figcaption></figure><figcaption class="blocks-gallery-caption wp-element-caption">OOUX &#8211; physical post-its in &#8216;feature wishlist&#8217;. MVP on the right.</figcaption></figure><h2 class="wp-block-heading">Collaborative Sketching</h2><p class="wp-block-paragraph">I led the team through processes taken from the&nbsp;<a href="https://btribble.com/portfolio-item/design-sprint/?customize_changeset_uuid=cd70c735-6740-4d75-bf42-b9b394f942ed&amp;customize_autosaved=on&amp;customize_theme=enfold-child&amp;customize_messenger_channel=preview-0">GV Design Sprint</a>, going from understanding the current research and personas, through collaborative sketching workshops, into a lo-fidelity then hi-fidelity prototype and testing.</p><p class="wp-block-paragraph">One idea in particular stood out:</p><div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-995f960e wp-block-columns-is-layout-flex"><div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%"><h5 class="wp-block-heading">Music as Chat</h5>
+
+<p class="wp-block-paragraph">It didn’t look like much at first – but this sketch contained the germ of an idea that went on to redefine the entire product.</p>
+
+<h5 class="wp-block-heading"><a href="images/tims-sketch-3327.jpg"></a></h5></div>
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%"><figure class="wp-block-image"><a href="images/tims-sketch-3327.jpg"><img decoding="async" src="images/tims-sketch-3327.jpg" alt=""/></a><figcaption class="wp-element-caption">Tim&#8217;s &#8216;chat interface for music&#8217; sketch</figcaption></figure>
+
+</div></div><section class="wp-block-uagb-section uagb-section__wrap uagb-section__background-color alignfull uagb-block-22dac2a8"><div class="uagb-section__inner-wrap"><h3 class="wp-block-heading">A New Product Vision</h3>
+
+<p class="wp-block-paragraph">While our early beta testers were playing with the app, we were having a parallel conversation with them in Slack. It suddenly became an obvious idea to combine the two streams – the music and the chat.</p>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" height="585" width="1030" decoding="async" src="images/slack-chat.png" alt="" class="wp-image-1933"/><figcaption class="wp-element-caption">Slack chat that accompanied our music making</figcaption></figure>
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-995f960e wp-block-columns-is-layout-flex"><div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><figure class="wp-block-video"><video height="1408" style="aspect-ratio: 744 / 1408;" width="744" autoplay controls loop muted src="https://btribble.com/wp-content/uploads/2019/04/endlesss_mid.mp4"></video><figcaption class="wp-element-caption">Mid-fidelity prototype built to test structure and interactions</figcaption></figure></div>
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><h4 class="wp-block-heading">Test chat</h4>
+
+<p class="wp-block-paragraph">With this new way of looking at the product in place, other &#8216;chat app&#8217; patterns became obvious solutions for navigation, and organising &#8216;chats&#8217; (musical jams). We initially tested these ideas in a mid-fidelity prototype.</p></div></div>
+
+</div></section><section class="wp-block-uagb-section uagb-section__wrap uagb-section__background-undefined alignfull uagb-block-87715faa"><div class="uagb-section__inner-wrap"><h3 class="wp-block-heading">Vision in Development</h3>
+
+<p class="wp-block-paragraph">Our success in testing the mid-fidelity prototype gave us the confidence to build out a high-fidelity and really dig into the ideas. These concepts allowed us to test deeper concepts quickly and gave inspiration to our engineers as they built out the next working version.</p>
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-2 is-layout-flex wp-block-gallery-is-layout-flex"><figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1080" height="1900" data-id="1940" src="images/hifi00001.png" alt="" class="wp-image-1940" /></figure>
+
+<figure class="wp-block-image size-large"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1074" height="1916" data-id="1941" src="images/hifi00002.png" alt="" class="wp-image-1941" /></figure><figcaption class="blocks-gallery-caption wp-element-caption">Jams list and combined chat / music interface</figcaption></figure>
+
+<h3 class="wp-block-heading">Launch!</h3>
+
+<p class="wp-block-paragraph">Endlesss soft-launched in 2019, and has been going from strength to strength ever since. They&#8217;ve had over 80% ‘organic growth’ – users referring other users, and long in-app dwell times (as many as 7 hours at a stretch! Yes we’re concerned). I’m also a massive fan of the app, and a daily user. I was lucky enough to be able to join the team for events in Tromso and Berlin in 2019, and I work with them whenever I can. You can follow their progress here:&nbsp;<a rel="noreferrer noopener" href="https://endlesss.fm/" target="_blank">endlesss.fm.</a>&nbsp;Check out the product launch video&nbsp;below!</p></div></section><section class="wp-block-uagb-section uagb-section__wrap uagb-section__background-undefined alignfull uagb-block-5da25697"><div class="uagb-section__inner-wrap"><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube alignwide wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<span class="embed-youtube" style="text-align:center; display: block;"><iframe loading="lazy" class="youtube-player" width="1290" height="726" src="https://www.youtube.com/embed/m8uDTP3A2WA?version=3&#038;rel=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;fs=1&#038;hl=en-GB&#038;autohide=2&#038;wmode=transparent" allowfullscreen="true" style="border:0;" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-popups-to-escape-sandbox"></iframe></span>
+</div><figcaption class="wp-element-caption">Endlesss product launch video</figcaption></figure>
+
+<h3 class="wp-block-heading">Results are in</h3>
+
+<p class="wp-block-paragraph">The app has received glowing reviews and great press too!</p>
+
+<figure class="wp-block-image alignwide size-full"><img data-recalc-dims="1" loading="lazy" decoding="async" width="1290" height="587" src="images/Endlesss-App-Store-1992x907-1.jpeg" alt="" class="wp-image-5753" /><figcaption class="wp-element-caption">A few of our launch reviews</figcaption></figure></div></section><section class="wp-block-uagb-section uagb-section__wrap uagb-section__background-undefined alignfull uagb-block-f3d87ed3"><div class="uagb-section__inner-wrap"><div class="wp-block-stackable-testimonial stk-block-testimonial stk-block stk-c8f1ad8 is-style-default" data-v="2" data-block-id="c8f1ad8"><div class="stk-block-testimonial__content stk-content-align stk-c8f1ad8-column stk-container stk-c8f1ad8-container stk-hover-parent"><div class="stk-block-content stk-inner-blocks has-text-align-center stk-c8f1ad8-inner-blocks"><div class="wp-block-stackable-text stk-block-text stk-block stk-ffef3c7" data-block-id="ffef3c7"><p class="stk-block-text__text has-text-align-left"><em>Bill is a design superstar. He skilfully took us on a step by step journey that completely redesigned our product from the ground up in 3 weeks in the most gloriously user-centric way. Bill is an excellent communicator, a laser-focussed thinker and a natural leader with a clean but charismatic aesthetic&nbsp;sense.</em></p></div>
+
+<div class="wp-block-stackable-image stk-block-image stk-block stk-b623a11" data-block-id="b623a11"><style>.stk-b623a11 .stk-img-wrapper{width:75px !important;height:75px !important;}.stk-b623a11 .stk-img-wrapper img, .stk-b623a11 .stk-img-wrapper::after, .stk-b623a11 .stk-img-wrapper::before{mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCI+PC9jaXJjbGU+PC9zdmc+') !important;-webkit-mask-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCI+PC9jaXJjbGU+PC9zdmc+') !important;}</style><figure><span class="stk-img-wrapper stk-img--shape stk-image--shape-stretch"><img data-recalc-dims="1" loading="lazy" decoding="async" class="stk-img wp-image-1838" src="images/tim.jpg" width="289" height="289"/></span></figure></div>
+
+<div class="wp-block-stackable-heading stk-block-heading stk-block-heading--v2 stk-block stk-0aabed8" id="tim-shaw" data-block-id="0aabed8"><h3 class="stk-block-heading__text">Tim Shaw</h3></div>
+
+<div class="wp-block-stackable-subtitle stk-block-subtitle stk-block stk-38ff6c4" data-block-id="38ff6c4"><p class="stk-block-subtitle__text stk-subtitle">Founder</p></div></div></div></div></div></section>
+    </article>
+    <div class="back-index">
+      <a href="index.html">&larr; Back to Legacy Backup Index</a>
+    </div>
+  </div>
+</body>
+</html>

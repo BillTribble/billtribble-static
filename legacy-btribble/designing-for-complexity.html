@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complexity made simple | Static Archive</title>
+  <style>
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    color: #1a1a1a;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 2rem 1rem;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  header.archive-header {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  header.archive-header h1 {
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem 0;
+    color: #111;
+  }
+  .archive-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .archive-meta a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+  .archive-notice {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+  article.content {
+    font-size: 1.05rem;
+    color: #222;
+  }
+  article.content h1, article.content h2, article.content h3, article.content h4 {
+    color: #111;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  article.content p {
+    margin: 1.25rem 0;
+  }
+  article.content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 4px;
+  }
+  article.content figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  article.content figcaption {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  article.content blockquote {
+    border-left: 3px solid #ddd;
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+  }
+  article.content ul, article.content ol {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+  article.content li {
+    margin-bottom: 0.5rem;
+  }
+  article.content a {
+    color: #0066cc;
+  }
+  article.content video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+  }
+  .back-index {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+  }
+  .back-index a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  .back-index a:hover {
+    text-decoration: underline;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="archive-header">
+      <h1>Complexity made simple</h1>
+      <p class="archive-meta">Published: 2016-12-14 &bull; Original: <a href="https://btribble.com/designing-for-complexity/" target="_blank" rel="noopener noreferrer">https://btribble.com/designing-for-complexity/</a></p>
+      <div class="archive-notice">Archived from https://btribble.com/designing-for-complexity/ on 2026-10-18</div>
+    </header>
+    <article class="content">
+<p class="wp-block-paragraph">It’s easy to make things complicated when you’re designing an interface for complex work. In this case study I outline how we kept things simple and relatable while still allowing for powerful interactions in a new analytics dashboard.</p><section class="wp-block-uagb-section uagb-section__wrap uagb-section__background-undefined uagb-block-7296351d"><div class="uagb-section__inner-wrap"><figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<span class="embed-youtube" style="text-align:center; display: block;"><iframe loading="lazy" class="youtube-player" width="1290" height="726" src="https://www.youtube.com/embed/VHuWQIdWbZo?version=3&#038;rel=1&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;fs=1&#038;hl=en-GB&#038;autohide=2&#038;wmode=transparent" allowfullscreen="true" style="border:0;" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-popups-to-escape-sandbox"></iframe></span>
+</div><figcaption>An explainer video I created for the analytics department</figcaption></figure></div></section><div class="wp-block-genesis-blocks-gb-container gb-block-container"><div class="gb-container-inside"><div class="gb-container-content"></div></div></div><div class="wp-block-genesis-blocks-gb-container gb-block-container"><div class="gb-container-inside"><div class="gb-container-content"></div></div></div><h4>The Issue</h4><p class="wp-block-paragraph" id="6b03">Like many large organisations, Colorado University have a problem — their data is everywhere, siloed, and accessible only to individual departments — each one with their own jerry-rigged workflow to access, analyse and gain insights from the information.</p><p class="wp-block-paragraph" id="1292">Over the past few months, I’ve had the privilege to work with the University staff and a talented international team assembled through <a href="https://www.toptal.com/#book-just-impressive-programmers-today" rel="noreferrer noopener" target="_blank">Toptal</a> on an integration project — Analytics 360.</p><h4 class="wp-block-heading" id="0ef8">The Vision</h4><p class="wp-block-paragraph" id="4517">The vision is to create an integrated platform for exploring and analysing University data. The aim is for it to be accessible enough for anyone to get involved, but adaptable enough for department specialists to be able to really dig into the information. We hope to be able to include every database across campus, and create a platform that is so compelling that University staff ditch their old workflows and happily engage with the new system!</p><h3 class="wp-block-heading" id="21f2">Game On<h3><h4 class="wp-block-heading" id="7ca4">The Design Challenge</h4><p class="wp-block-paragraph" id="d377">Our users need to deal with a wide range of data sources, compare and contrast them, recall things quickly, and explore new sources quickly and intuitively.</p><p class="wp-block-paragraph" id="e1ef">How can we create a user interface that is flexible enough to deal with the needs of a wide range of users across campus and beyond? We need to create something that is familiar enough for users to be able to get started immediately, with the minimum of friction. If we are successful, our users will migrate quickly to the new platform, and abandon their old workflows for key tasks.</p><h3 class="wp-block-heading" id="8faa">Our Solution<h3><h4 class="wp-block-heading" id="6b98">The Devil You Know</h4><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_BDqUgVHj6EDvT0iSIPz6vA.png" alt="" width="768" height="47"/><figcaption>Windows 10 Taskbar and Search</figcaption></figure><p class="wp-block-paragraph" id="7894">We had a complex system to develop, with a lot of moving parts and scope for flexibility. How to help users cope? First of all, we aimed for familiarity. Rather than reinvent the wheel, we used common conventions that we knew they would be familiar with: The Windows ‘Start’ button and Taskbar.</p><p class="wp-block-paragraph" id="49df">We also included close, minimize and maximise buttons, recognizable from any mouse driven graphic user interface. These elements all perform their usual function in an environment that users would be able to use straight away.</p><h4 class="wp-block-heading" id="bf9d">Simple Windowing</h4><p class="wp-block-paragraph" id="e945">That said, the ‘classic’ mouse and keyboard graphical user interface has one major downfall — the windowing system is rather too flexible, and often leaves users hunting around for information they need, or frustratedly dealing with overlapping windows.</p><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_TM6hNsoygDwDrj33WFYOsw.png" alt="" width="768" height="138"/><figcaption>Overlapping Windows</figcaption></figure><p class="wp-block-paragraph" id="4b39">To avoid these issues, we have created a simple ‘tiled’ window system, that automatically ‘snaps’ windows in place, with a maximum (for now) of 2 windows visible at a time. Elements like the Sidebar also avoid overlapping windows by ‘shrinking’ them to make room when open.</p><h4 class="wp-block-heading" id="1741">Tutorials</h4><p class="wp-block-paragraph" id="ec4f">Finally, we have begun the process of adding a simple ‘walkthrough’ for first-time users, and contextual mini-tutorials that are activated when users try new features for the first time.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_Mb6mQD3x1USJy1hfDF-RMA.gif" alt=""/><figcaption>Windows 95 Introduction. Been around a while, right?</figcaption></figure><h3 class="wp-block-heading" id="bc62">How We Started<h3><h4 class="wp-block-heading" id="1bce">Concept</h4><p class="wp-block-paragraph" id="2b95">The need has grown in recent years to create a new way to deal with the immense amounts of financial and administrational data being generated at the University. Databases are currently siloed, and workflows across campus are currently complex and limited in their scope.</p><h4 class="wp-block-heading" id="1567">Initial Interviews</h4><p class="wp-block-paragraph" id="3e4e">I began the design process by interviewing as many people as time would allow about the project:</p><ul class="wp-block-list"><li>What did they hope to achieve?</li><li>What does success look like to them?</li><li>How can we measure success?</li><li>What types of data are you currently dealing with?</li><li>What apps or processes do you currently use?</li><li>What are the main problems you encounter in your current work with data?</li><li>What would your dream analytics app do for you?</li><li>Can you draw a picture of how it might look?</li></ul><p class="wp-block-paragraph" id="83b0">Time was short before a demo date with the University’s Chief Financial Officer, so these were limited to begin with to the Director of Reporting &amp; Analytics, the IT Program Manager, and a research scientist (‘Principal Investigator’, in University speak).</p><h4 class="wp-block-heading" id="517d">Outcomes</h4><p class="wp-block-paragraph" id="b19c">The interviews enabled me to get a much better idea of the main challenges our potential users are facing in their work, and ways we might solve their problems. The sketching exercises were particularly invaluable — it’s always fascinating to get that visual representation of a potential user interface directly from someone who might use it.</p><p class="wp-block-paragraph" id="3902">Most of the user needs fit well within the framework we were currently developing, so the framing worked well. The main outcomes were a push for flexibility from our team, so that users could ‘craft’ the interface for a whole range of different tasks.</p><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_uZUrJw81WHmNf8s5cp-zuA.png" alt="" width="769" height="424"/><figcaption>😬 The look of the dashboard when I first spoke to the team!</figcaption></figure><h4 class="wp-block-heading" id="65f3">Green-Field Development</h4><p class="wp-block-paragraph" id="5486">As a designer, creating a new platform from scratch is always really exciting. Raza and our distributed team had already created a whole back-end for the system by the time I got on board, but no work had been done on the visual side, so we had a very open playing field.</p><h4 class="wp-block-heading" id="dcbc">Interaction patterns</h4><p class="wp-block-paragraph" id="0d96">A simple structure had already been built — 2 window panes, that could either be filled with a ‘tree’ style menu system or some analytics:</p><figure class="wp-block-image is-resized"><img loading="lazy" decoding="async" src="images/0_tDAwIXkiRxx--68z.png" alt="" width="767" height="381"/><figcaption>The first I saw of the new platform.</figcaption></figure><p class="wp-block-paragraph" id="10ff">Although I really liked the simplicity of this layout, and the ‘2-pane’ view, I wanted to get back to basics here and explore further, so I began working on paper to sketch out some rough ideas.</p><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_aaoFRKaWSCi-zC8o4xfXxQ.png" alt="" width="768" height="424"/></figure><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_knL-7TswH3qoI-uyJIZhqA.png" alt="" width="769" height="532"/></figure><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_CfCk3uHslBgzzmGeOPpqYA.png" alt="" width="766" height="610"/><figcaption>Initial sketches (click to zoom)</figcaption></figure><p class="wp-block-paragraph" id="3b00">This was a quick process — after batting some ideas around for a day, we were able to settle on a vision and start designing at a higher fidelity.</p><h4 class="wp-block-heading" id="837e">Mid-fidelity wireframes</h4><p class="wp-block-paragraph" id="b496">Sketched prototypes are all very well, but to really start testing layout and ‘copy’ (in-app text) you need to go up a level of fidelity. Using an online app called <strong>Realtimeboard</strong>, we were able to collaborate on ideas directly.</p><p class="wp-block-paragraph" id="4f3a">One of our key goals is ease-of-use and familiarity, so we settled on some design patterns that will be well-known to our users, like ‘windows’, and a ‘Start menu’ / ‘Taskbar’ style interface.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_8iEJvN37CnvWO-76sdOKtQ.png" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_bulAgNBiMKJTv5dHnJ4lkA.png" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_aUs6SCheFHhYs-Hyxy2zHg.png" alt=""/></figure><h4 class="wp-block-heading" id="9d2d">Visual design</h4><p class="wp-block-paragraph" id="5199">I began by reviewing the existing designs on the university site. The current scheme is very simple, a few colors and a web-standard typeface — so we didn’t have too many restrictions to begin with.</p><p class="wp-block-paragraph" id="641d">For graphing, we were going to need a few more colors, so I built out a new secondary palette that would align nicely with the existing set, inspired by some of the existing Colorado University photography.</p><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_jl8izFOn76yk_bQTbVocIQ.png" alt="" width="768" height="544"/></figure><figure class="wp-block-image is-resized"><img data-recalc-dims="1" loading="lazy" decoding="async" src="images/1_4dW_Ea-ZFlwZP5_Gac0POQ.png" alt="" width="767" height="523"/><figcaption>Palette &amp; inspiration</figcaption></figure><h4 class="wp-block-heading" id="831d">Moodboard</h4><p class="wp-block-paragraph" id="ee9b">To flesh out a visual direction, I also built a ‘moodboard’ of ideas from a variety of areas — my previous work, inspirational user interfaces, and ideas we might steal directly. (Link at the end).</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_DZBGxPtftiwLe5ZePVNpUw.jpeg" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_lphmkWeNMTIW-9RSJTnhRw.jpeg" alt=""/><figcaption>Moodboard examples. L: Paris Metro in circles. R: The Martian Film User Interface.</figcaption></figure><p class="wp-block-paragraph" id="c8dd">Next, using a few elements from a user interface template, I created some initial test designs for a login screen and ‘home’ environment — with the Flatiron mountains in the background.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_YlSoOgoXo1Ir0Ec4axdkkA.png" alt=""/><figcaption>Login screen iteration</figcaption></figure><h4 class="wp-block-heading" id="3fe8">Logo</h4><p class="wp-block-paragraph" id="2b59">To help reinforce the visual identity of the app, we also created a logo for the department based on those iconic mountains — and how … graphlike they appear to those that way inclined.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_EEg6IVF6kUl5f_l2XvuMew.png" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_5Fvb2FZ3XCFP1OzHVyJx1Q.png" alt=""/><figcaption>Logo tests, final on right.</figcaption></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_xAwOy3vDB6cKSCV6sr4Oyg.png" alt=""/><figcaption>Monochrome logo in use as link to Reporting &amp; Analytics Department, top left</figcaption></figure><h3 class="wp-block-heading" id="3907">Work in Progress<h3><h4 class="wp-block-heading" id="9941">User-Centred Design Process</h4><p class="wp-block-paragraph" id="fb59">Now that we have established a basic structure for the application, our design process will be centred around our target users. Building on our initial interviews with Principal Investigators, we will be running regular usability testing sessions to make sure that we are on track to meet their needs.</p><h4 class="wp-block-heading" id="0fbd">A Flexible Dashboard System</h4><p class="wp-block-paragraph" id="277b">We are aiming to build a flexible, ‘atomic’ dashboard structure, so that users can begin with templates, create exactly the view they need, and save it for easy access.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_916BDU8XwxKux0X2o8VMdA.png" alt=""/><figcaption>Main dashboard view, with windowing system</figcaption></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_U55WIO1J6xUvz_E6Plg19Q.png" alt=""/><figcaption>‘Information view’ for a chart, with social panel</figcaption></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_K1PQXGjDRvvq-hQZRCK43w.png" alt=""/><figcaption>‘Favorites’ sidebar</figcaption></figure><h4 class="wp-block-heading" id="5a16">The ‘Wikipedia’ Effect</h4><p class="wp-block-paragraph" id="21ce">We also hope to make the data across campus easily accessible and ‘connected’ — so that relationships between different data-sets are easily exposed and simple to follow. To this end we are experimenting with ‘Suggested’ or related data-sets, that will help users find the connections and gain new insights.</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_rteTaJid4pLH44CCa-SN3g.png" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_mbx4fg2joqIgce8xLdrywg.png" alt=""/></figure><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_8xcMIch2l3dN295JHKQpIw.png" alt=""/><figcaption>Navigation experiments and ‘suggested’ data-sets</figcaption></figure><h3 class="wp-block-heading" id="b476">Next Steps</h3><p class="wp-block-paragraph" id="c52c">We are now moving to the stage where we can get a live version of the site up for development and testing across our team of developers and designers. This will both accelerate development, and allow us to make sure that the product we are <em>designing</em> is the product that we <em>deliver</em>.</p><p class="wp-block-paragraph" id="1e46">We’d love to hear your thoughts on our progress so far, and your hopes for the platform!</p><h3 class="wp-block-heading" id="3c09">Links</h3><p class="wp-block-paragraph" id="8524"><a href="http://realtimeboard.com/" rel="noreferrer noopener" target="_blank">Realtimeboard</a> — online visual collaboration</p><p class="wp-block-paragraph" id="c81d">Invision <a href="https://projects.invisionapp.com/boards/9Y2X475SFA7ZE/" rel="noreferrer noopener" target="_blank">Moodboard for the project</a></p><p class="wp-block-paragraph" id="60ae"><a href="http://www.colorado.edu/" rel="noreferrer noopener" target="_blank">The University of Boulder, Colorado</a></p><p class="wp-block-paragraph" id="db63"><a href="https://www.toptal.com/#book-just-impressive-programmers-today" rel="noreferrer noopener" target="_blank">Toptal</a></p><p class="wp-block-paragraph" id="ae1b"><a href="https://www.invisionapp.com/now" rel="noreferrer noopener" target="_blank">‘Now’ — User interface template</a></p><h4 class="wp-block-heading" id="0acd">One last thing</h4><p class="wp-block-paragraph" id="34df">I’ll leave you with this awesome data visualization we discovered. Because Queen:</p><figure class="wp-block-image"><img data-recalc-dims="1" decoding="async" src="images/1_N-tl5EojCRfSbNKLLV9aHA.gif" alt=""/></figure><p class="wp-block-paragraph" id="3fc4">Source: <a href="https://public.tableau.com/en-us/s/gallery/analysis-queen" rel="noreferrer noopener" target="_blank">https://public.tableau.com/en-us/s/gallery/analysis-queen</a></p>
+    </article>
+    <div class="back-index">
+      <a href="index.html">&larr; Back to Legacy Backup Index</a>
+    </div>
+  </div>
+</body>
+</html>
