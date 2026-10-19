@@ -16,7 +16,7 @@ const PROPER_NOUNS = new Set([
   'scriptures', 'lucifer', 'kenneth', 'anger', 'garage', 'hermétique', 'holy',
   'portal', 'records', 'tpj', 'theau', 'badrico', 'million', 'movers',
   'crystal', 'temple', 'guides', 'forever', 'nihon', 'actual', 'vibes',
-  'ux', 'hopin', 'unmind', 'google', 'adobe', 'canon', 'endlesss', 'deepmind', 'im'
+  'ux', 'hopin', 'unmind', 'google', 'adobe', 'canon', 'endlesss', 'deepmind', 'im', 'hybridizer'
 ]);
 
 function toSentenceCase(str) {
