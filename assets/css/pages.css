@@ -707,13 +707,12 @@
   display: block;
 }
 
-/* Title & body copy match the old btribble.com intro format:
-   h1 "Hi I'm Bill." — Inter 32px w800; paragraphs 20px/33px */
+/* Intro title uses the site's val-stencil-bold display font (.entry-title) */
 .design-intro .entry-title {
-  font-family: var(--font-primary) !important;
-  font-weight: 800 !important;
-  font-size: 32px;
-  line-height: 48px;
+  font-family: 'val-stencil-bold', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: var(--md-sys-typescale-display-medium-size);
+  line-height: var(--md-sys-typescale-display-medium-line-height);
   letter-spacing: normal;
   margin: 42px 0 14px;
 }
