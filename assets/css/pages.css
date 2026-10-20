@@ -680,6 +680,10 @@
 }
 
 /* Design & portfolio page — matches the old btribble.com layout */
+.single-post-container.design-page {
+  gap: 48px;
+}
+
 .design-columns {
   display: grid;
   grid-template-columns: 1fr 341px;
@@ -687,22 +691,38 @@
   align-items: start;
 }
 
-/* Portrait photo on the right, like the old site */
+/* Portrait photo on the right, like the old site.
+   height: auto so the container wraps both the circular portrait and .design-logos below it. */
 .design-columns .avatar-container {
   width: 341px;
-  height: 341px;
+  height: auto;
+  margin-bottom: 0;
   order: 2;
+}
+
+.design-columns .profile-avatar {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: block;
 }
 
 /* Title & body copy match the old btribble.com intro format:
    h1 "Hi I'm Bill." — Inter 32px w800; paragraphs 20px/33px */
-.design-page .entry-title {
+.design-intro .entry-title {
   font-family: var(--font-primary) !important;
   font-weight: 800 !important;
   font-size: 32px;
   line-height: 48px;
   letter-spacing: normal;
   margin: 42px 0 14px;
+}
+
+.design-writing-grid .post-item .entry-title {
+  font-family: var(--font-heading);
+  font-size: var(--md-sys-typescale-title-large-size);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  margin: 0;
 }
 
 .design-page .entry-content {
@@ -805,23 +825,33 @@
 }
 
 @media (max-width: 900px) {
+  .single-post-container.design-page {
+    gap: 40px;
+  }
+
   .design-columns {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
+  .design-intro .entry-title {
+    margin: 0 0 8px;
+  }
+
+  .design-page .entry-content > p.design-lede {
+    margin-top: 8px;
+  }
+
   .design-columns .avatar-container {
     width: 240px;
-    height: 240px;
+    height: auto;
     order: 0;
-    /* Stacked layout: separate the logo block from the buttons below */
-    margin: 0 auto 40px;
+    margin: 8px auto 0;
   }
 
   .design-columns .avatar-container .design-logos {
     margin-top: 24px;
     margin-bottom: 0;
-    padding-bottom: 16px;
   }
 
   .design-writing-grid {
@@ -832,5 +862,13 @@
 @media (max-width: 600px) {
   .design-page .links-buttons {
     grid-template-columns: 1fr;
+  }
+
+  .design-page .link-btn {
+    padding: 12px 20px;
+    gap: 14px;
+    border-radius: 28px;
+    font-size: 15px;
+    line-height: 22px;
   }
 }
