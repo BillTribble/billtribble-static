@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://billtribble.com/sitemap.xml

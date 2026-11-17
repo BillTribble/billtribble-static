@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://billtribble.com/</loc>
+    <image:image>
+      <image:loc>https://billtribble.com/og-preview.png</image:loc>
+      <image:title>Bill Tribble — Musician, Creative Technologist &amp; Designer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://billtribble.com/design</loc>
+    <image:image>
+      <image:loc>https://billtribble.com/og-design-preview.png</image:loc>
+      <image:title>Designer &amp; creative technologist – Bill Tribble</image:title>
+    </image:image>
+  </url>
+</urlset>
