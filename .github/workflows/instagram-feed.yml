@@ -34,7 +34,15 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add assets/instagram.json assets/images/instagram/
           if git diff --cached --quiet; then
-            echo "No changes in Instagram feed."
+            last_commit=$(git log -1 --format=%ct)
+            age_days=$(( ($(date +%s) - last_commit) / 86400 ))
+            if [ "$age_days" -ge 45 ]; then
+              echo "Last commit was ${age_days}d ago; pushing keepalive commit to prevent 60-day schedule pause."
+              git commit --allow-empty -m "chore: keep scheduled workflow active [skip ci]"
+              git push origin main
+            else
+              echo "No changes in Instagram feed (last commit ${age_days}d ago)."
+            fi
           else
             git commit -m "chore: auto-update instagram feed [skip ci]"
             git push origin main
